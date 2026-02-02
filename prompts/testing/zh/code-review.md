@@ -115,7 +115,7 @@ Provide:
 ```markdown
 # Code Review Report
 
-## Critical Issues (Must Fix)
+## 关键问题（必须修复）
 ### Issue #1: SQL Injection Risk
 - **Severity**: Critical
 - **Location**: `auth.py:45`
@@ -125,17 +125,17 @@ Provide:
   cursor.execute("SELECT * FROM users WHERE id = %s", (user_id,))
   ```
 
-## High Priority Issues
+## 高优先级问题
 ### Issue #1: Missing Error Handling
 ...
 
-## Medium Priority Issues
+## 中等优先级问题
 ...
 
-## Low Priority Issues
+## 低优先级问题
 ...
 
-## What's Done Well 🌟
+## 做得好的地方 🌟
 - Good use of type hints
 - Comprehensive test coverage
 ...
