@@ -13,36 +13,82 @@
 
 ```
 vibe-coding-rules/
-├── prompts/              # Prompt 模板
-│   ├── quick-fix.md     # 快速 bug 修复
-│   ├── complex-refactor.md  # 复杂重构
-│   ├── code-review.md   # 代码审查
-│   ├── new-feature.md   # 新功能实现
-│   └── optimization.md  # 性能优化
-├── workflows/            # 完整工作流
-│   ├── single-bug-fix.md       # 单 bug 修复
-│   └── parallel-batch-fixes.md # 批量并行修复
-├── examples/             # 实战例子
-│   └── bad-vs-good-prompts.md  # Prompt 对比
-└── README.md            # 本文件
+├── phases/                      # 四阶段开发方法论
+│   ├── 01-requirement-analysis.md    # Phase 1: 需求分析
+│   ├── 02-solution-design.md        # Phase 2: 方案设计
+│   ├── 03-code-development.md       # Phase 3: 代码开发
+│   └── 04-testing-validation.md    # Phase 4: 测试验证
+│
+├── prompts/                     # Prompt 模板（按开发阶段分类）
+│   ├── analysis/               # 分析阶段
+│   │   ├── requirement-clarification.md
+│   │   ├── solution-design.md
+│   │   └── architecture-review.md
+│   │
+│   ├── development/            # 开发阶段
+│   │   ├── quick-fix.md           # 快速 bug 修复
+│   │   ├── complex-refactor.md    # 复杂重构
+│   │   ├── new-feature.md         # 新功能实现
+│   │   └── optimization.md        # 性能优化
+│   │
+│   └── testing/                # 测试阶段
+│       ├── unit-test.md            # 单元测试
+│       ├── integration-test.md     # 集成测试
+│       ├── e2e-test.md            # 端到端测试
+│       ├── performance-test.md      # 性能测试
+│       └── code-review.md         # 代码审查
+│
+├── workflows/                  # 完整工作流
+│   ├── single-bug-fix.md       # 单 bug 修复工作流
+│   └── parallel-batch-fixes.md # 批量并行修复工作流
+│
+├── examples/                   # 实战例子
+│   └── bad-vs-good-prompts.md  # Prompt 对比示例
+│
+├── LICENSE                     # MIT License
+└── README.md                   # 本文件
 ```
 
 ## 🚀 快速开始
 
-### 1. 学习 Prompt 写作
+### 1. 理解 Vibe Coding 方法论
 
-阅读 `examples/bad-vs-good-prompts.md`，理解如何写出有效的 prompt。
+阅读 `phases/` 目录，理解完整的四阶段开发流程：
+
+| 阶段 | 文档 | 内容 |
+|------|------|------|
+| Phase 1 | `01-requirement-analysis.md` | 需求澄清、优先级、验收标准 |
+| Phase 2 | `02-solution-design.md` | 方案对比、架构设计、风险评估 |
+| Phase 3 | `03-code-development.md` | TDD、增量开发、代码质量 |
+| Phase 4 | `04-testing-validation.md` | 测试金字塔、单元/集成/E2E、性能测试 |
 
 ### 2. 使用 Prompt 模板
 
-根据任务类型，在 `prompts/` 目录找到合适的模板：
-- 快速修复 → `prompts/quick-fix.md`
-- 复杂重构 → `prompts/complex-refactor.md`
-- 代码审查 → `prompts/code-review.md`
-- 新功能 → `prompts/new-feature.md`
-- 性能优化 → `prompts/optimization.md`
+根据开发阶段，选择合适的模板：
 
-### 3. 跟随工作流
+**分析阶段（prompts/analysis/）：**
+- 需求澄清 → `requirement-clarification.md`
+- 方案设计 → `solution-design.md`
+- 架构审查 → `architecture-review.md`
+
+**开发阶段（prompts/development/）：**
+- 快速修复 → `quick-fix.md`
+- 复杂重构 → `complex-refactor.md`
+- 新功能 → `new-feature.md`
+- 性能优化 → `optimization.md`
+
+**测试阶段（prompts/testing/）：**
+- 单元测试 → `unit-test.md`
+- 集成测试 → `integration-test.md`
+- E2E 测试 → `e2e-test.md`
+- 性能测试 → `performance-test.md`
+- 代码审查 → `code-review.md`
+
+### 3. 学习 Prompt 写作
+
+阅读 `examples/bad-vs-good-prompts.md`，理解如何写出有效的 prompt。
+
+### 4. 跟随完整工作流
 
 阅读 `workflows/` 目录的完整工作流：
 - 单 bug 修复 → `workflows/single-bug-fix.md`
@@ -76,22 +122,32 @@ Vibe Coding = 用自然语言跟 AI 一起编程，保持心流，让 AI 做脏�
 - 人类专注在高层次思考
 - 快速迭代，持续反馈
 
+### 四阶段方法论
+
+我们将软件开发分为四个阶段，每个阶段都有对应的 prompt 模板和最佳实践：
+
+```
+Phase 1: 需求分析
+    ↓
+Phase 2: 方案设计
+    ↓
+Phase 3: 代码开发
+    ↓
+Phase 4: 测试验证
+```
+
+每个阶段都强调：
+- 在进入下一阶段前完成当前阶段的工作
+- 使用 AI 辅助快速完成各阶段任务
+- 保持文档和测试的完整性
+
 ### 为什么有效？
 
 1. **降低认知负担** - 不需要记忆所有细节
 2. **提高速度** - AI 比手写快得多
 3. **减少错误** - AI 可以处理边界情况
 4. **持续学习** - 通过 prompt 不断提升
-
-## 🎓 研究方向
-
-- [x] Prompt 优化技巧
-- [x] 任务分解策略
-- [x] 并行工作方法
-- [ ] 更多实战案例分析
-- [ ] 不同 Agent 的对比
-- [ ] 性能基准测试
-- [ ] 错误处理和恢复策略
+5. **结构化流程** - 四阶段方法论避免混乱
 
 ## 💡 核心原则
 
@@ -124,19 +180,87 @@ Vibe Coding = 用自然语言跟 AI 一起编程，保持心流，让 AI 做脏�
 ## 📖 推荐阅读顺序
 
 ### 新手入门
-1. `examples/bad-vs-good-prompts.md` - 理解 prompt 质量
-2. `prompts/quick-fix.md` - 最常用的场景
-3. `workflows/single-bug-fix.md` - 完整工作流
+
+**第一步：理解方法论**
+1. `phases/01-requirement-analysis.md` - 学习如何进行需求分析
+2. `phases/02-solution-design.md` - 学习如何设计技术方案
+3. `phases/03-code-development.md` - 学习如何高效开发
+4. `phases/04-testing-validation.md` - 学习如何全面测试
+
+**第二步：实践 Prompt**
+5. `examples/bad-vs-good-prompts.md` - 理解 prompt 质量
+6. `prompts/development/quick-fix.md` - 最常用的场景
+7. `workflows/single-bug-fix.md` - 完整工作流示例
 
 ### 进阶提升
-1. `prompts/complex-refactor.md` - 复杂任务处理
-2. `workflows/parallel-batch-fixes.md` - 并行工作流
-3. `prompts/optimization.md` - 性能优化
+
+1. `prompts/development/complex-refactor.md` - 复杂任务处理
+2. `prompts/development/optimization.md` - 性能优化技巧
+3. `prompts/analysis/requirement-clarification.md` - 需求澄清艺术
+4. `prompts/analysis/solution-design.md` - 方案设计实践
+5. `workflows/parallel-batch-fixes.md` - 并行工作流
 
 ### 高级实践
-1. `prompts/code-review.md` - 自动化审查
-2. `prompts/new-feature.md` - 大型功能实现
-3. (待添加更多实战案例)
+
+1. `prompts/testing/unit-test.md` - 单元测试最佳实践
+2. `prompts/testing/integration-test.md` - 集成测试策略
+3. `prompts/testing/e2e-test.md` - 端到端测试自动化
+4. `prompts/testing/performance-test.md` - 性能测试和分析
+5. `prompts/analysis/architecture-review.md` - 架构审查方法
+
+## 🎓 研究方向
+
+- [x] 四阶段开发方法论
+- [x] Prompt 优化技巧
+- [x] 任务分解策略
+- [x] 并行工作方法
+- [x] 测试模板（单元/集成/E2E/性能）
+- [ ] 更多实战案例分析
+- [ ] 不同 Agent 的对比（Codex vs Claude Code vs Pi）
+- [ ] 性能基准测试（量化效率提升）
+- [ ] 错误处理和恢复策略
+
+## 🚀 快速示例
+
+### 修复一个 Bug
+
+```bash
+# 使用 Phase 1 澄清需求
+阅读 prompts/analysis/requirement-clarification.md
+
+# 使用 Phase 2 设计方案
+阅读 prompts/analysis/solution-design.md
+
+# 使用 Phase 3 编写代码
+阅读 prompts/development/quick-fix.md
+
+# 使用 Phase 4 编写测试
+阅读 prompts/testing/unit-test.md
+```
+
+### 开发新功能
+
+```bash
+# 需求分析和设计
+阅读 prompts/analysis/requirement-clarification.md
+阅读 prompts/analysis/solution-design.md
+
+# 编码和测试
+阅读 prompts/development/new-feature.md
+阅读 prompts/testing/integration-test.md
+阅读 prompts/testing/e2e-test.md
+```
+
+### 性能优化
+
+```bash
+# 分析和设计
+阅读 prompts/analysis/architecture-review.md
+
+# 开发和测试
+阅读 prompts/development/optimization.md
+阅读 prompts/testing/performance-test.md
+```
 
 ## 🤝 贡献
 
@@ -147,13 +271,19 @@ Vibe Coding = 用自然语言跟 AI 一起编程，保持心流，让 AI 做脏�
 2. 添加你的模板或例子
 3. 提交 Pull Request
 
+**特别欢迎：**
+- 实战案例
+- 新的 Prompt 模板
+- 工作流改进
+- 效率提升数据
+
 ## 📝 License
 
 MIT License - 自由使用和分享
 
 ## 🏷️ 标签
 
-#AI #Coding #Productivity #ClaudeCode #OpenClaw #VibeCoding
+#AI #Coding #Productivity #ClaudeCode #OpenClaw #VibeCoding #PromptEngineering
 
 ---
 
@@ -164,4 +294,6 @@ MIT License - 自由使用和分享
 
 **准备好开启 Vibe Coding 之旅了吗？** 🚀
 
-从一个简单的任务开始，尝试使用我们的 prompt 模板，体验 AI 辅助编程的效率提升！
+从一个简单的任务开始，按照四阶段方法论，使用我们的 prompt 模板，体验 AI 辅助编程的效率提升！
+
+访问 [GitHub Repository](https://github.com/victor71/vibe-coding-rules) 获取最新内容和贡献。
