@@ -13,30 +13,30 @@
 ## Prompt 模板
 
 ```
-Optimize [component/area] for [goal: speed/memory/throughput].
+优化 [组件/区域] 以达到 [目标：速度/内存/吞吐量]。
 
-Current performance:
-- [Benchmark results or description of slowness]
-- [Specific bottlenecks if known]
+当前性能：
+- [基准测试结果或慢速描述]
+- [已知的特定瓶颈，如有]
 
-Target:
-- [Desired performance metrics]
+目标：
+- [期望的性能指标]
 
-Context:
-- [How this component is used]
-- [Constraints: can't change DB schema, must maintain API compatibility, etc.]
+上下文：
+- [该组件如何使用]
+- [约束：不能更改 DB schema，必须保持 API 兼容性等]
 
-Steps:
-1. Profile and identify bottlenecks
-2. Propose optimization strategy
-3. Implement changes
-4. Add benchmarks to verify improvement
-5. Ensure correctness with existing tests
+步骤：
+1. 性能分析并识别瓶颈
+2. 提出优化策略
+3. 实施更改
+4. 添加基准测试以验证改进
+5. 确保现有测试的正确性
 
-Requirements:
-- Maintain backward compatibility
-- Don't sacrifice correctness for speed
-- Add comments explaining optimizations
+要求：
+- 保持向后兼容
+- 不要为了速度牺牲正确性
+- 添加解释优化的注释
 ```
 
 ## 实际例子
@@ -44,72 +44,72 @@ Requirements:
 ### 例子 1：优化慢 API 响应
 
 ```
-Optimize the /api/users endpoint. Currently takes 5-10 seconds for large datasets.
+优化 /api/users 端点。目前大数据集需要 5-10 秒。
 
-Current performance:
-- Response time: 5-10s for 1000+ users
-- Database queries: 1000+ queries (N+1 problem)
-- Memory usage: High due to loading all data
+当前性能：
+- 响应时间：1000+ 用户需要 5-10s
+- 数据库查询：1000+ 查询（N+1 问题）
+- 内存使用：由于加载所有数据而很高
 
-Target:
-- Response time: <1s for 1000+ users
-- Database queries: <10 queries
-- Memory usage: Reduced by streaming results
+目标：
+- 响应时间：1000+ 用户 <1s
+- 数据库查询：<10 查询
+- 内存使用：通过流式结果减少
 
-Context:
-- This endpoint is used by the admin dashboard
-- Returns paginated user list with profile data
-- Currently loads all users, then filters
+上下文：
+- 该端点由管理仪表板使用
+- 返回带有配置文件数据的分页用户列表
+- 当前加载所有用户，然后过滤
 
-Requirements:
-- Keep the same API contract
-- Maintain pagination
-- Don't break existing filters
+要求：
+- 保持相同的 API 契约
+- 保持分页
+- 不破坏现有过滤器
 
-Steps:
-1. Read the current implementation (api/users.py)
-2. Identify the N+1 query problem
-3. Optimize using JOINs or subqueries
-4. Add database indexes if needed
-5. Stream results instead of loading all
-6. Add benchmarks before/after
-7. Ensure tests still pass
+步骤：
+1. 读取当前实现（api/users.py）
+2. 识别 N+1 查询问题
+3. 使用 JOIN 或子查询进行优化
+4. 如需要，添加数据库索引
+5. 流式结果而不是加载所有
+6. 添加优化前/后的基准测试
+7. 确保测试仍然通过
 ```
 
 ### 例子 2：减少内存使用
 
 ```
-Optimize the image processing service for memory usage.
+优化图像处理服务以减少内存使用。
 
-Current performance:
-- Processing 100 images: 2GB RAM usage
-- Frequent OOM errors with large batches
-- Images loaded entirely into memory
+当前性能：
+- 处理 100 张图像：2GB RAM 使用量
+- 大批次经常出现 OOM 错误
+- 图像完全加载到内存中
 
-Target:
-- Processing 100 images: <500MB RAM
-- Handle batches of 500+ images
-- Process images in chunks or streaming
+目标：
+- 处理 100 张图像：<500MB RAM
+- 处理 500+ 图像的批次
+- 以块或流式处理图像
 
-Context:
-- Service processes uploaded images
-- Applies resize, watermark, compression
-- Currently loads full image into memory
-- Uses PIL (Pillow)
+上下文：
+- 服务处理上传的图像
+- 应用调整大小、水印、压缩
+- 当前将完整图像加载到内存
+- 使用 PIL (Pillow)
 
-Requirements:
-- Maintain image quality
-- Keep the same API
-- Support async processing
+要求：
+- 保持图像质量
+- 保持相同的 API
+- 支持异步处理
 
-Steps:
-1. Profile memory usage with memory_profiler
-2. Identify memory leaks or allocations
-3. Process images in chunks or streams
-4. Reuse image buffers
-5. Add memory monitoring
-6. Add benchmarks for memory usage
-7. Ensure visual quality is maintained
+步骤：
+1. 使用 memory_profiler 分析内存使用
+2. 识别内存泄漏或分配
+3. 以块或流式处理图像
+4. 重用图像缓冲区
+5. 添加内存监控
+6. 添加内存使用基准测试
+7. 确保保持视觉质量
 ```
 
 ## 优化策略
@@ -117,61 +117,61 @@ Steps:
 ### 数据库优化
 
 ```
-Optimize database queries in [area].
+优化 [区域] 中的数据库查询。
 
-Check for:
-- N+1 query problems
-- Missing indexes
-- Inefficient JOINs
-- Unnecessary data fetching
-- Suboptimal WHERE clauses
+检查：
+- N+1 查询问题
+- 缺少索引
+- 低效的 JOIN
+- 不必要的数据获取
+- 次优的 WHERE 子句
 
-After optimization, add:
-- EXPLAIN ANALYZE output before/after
-- Index usage statistics
-- Query time benchmarks
+优化后，添加：
+- EXPLAIN ANALYZE 优化前/后输出
+- 索引使用统计
+- 查询时间基准测试
 ```
 
 ### 算法优化
 
 ```
-Optimize the [algorithm/function] for better performance.
+优化 [算法/函数] 以获得更好的性能。
 
-Current implementation: [describe]
-Time complexity: [if known]
+当前实现：[描述]
+时间复杂度：[如已知]
 
-Target:
-- Improve time complexity if possible
-- Reduce constant factors
-- Consider caching results if applicable
+目标：
+- 如可能，改善时间复杂度
+- 减少常数因子
+- 如适用，考虑缓存结果
 
-After optimization:
-- Add benchmarks comparing before/after
-- Document the algorithm improvement
-- Ensure correctness with edge cases
+优化后：
+- 添加优化前/后的基准测试比较
+- 记录算法改进
+- 确保边界情况的正确性
 ```
 
 ### 缓存策略
 
 ```
-Add caching to [component] to improve performance.
+为 [组件] 添加缓存以提高性能。
 
-Current performance: [describe slowness]
-Cache targets: [what should be cached]
+当前性能：[描述慢速]
+缓存目标：[应该缓存什么]
 
-Requirements:
-- Cache invalidation strategy
-- TTL (time-to-live) for different data
-- Cache hit/miss metrics
-- Fallback when cache fails
+要求：
+- 缓存失效策略
+- 不同数据的 TTL（存活时间）
+- 缓存命中/未命中指标
+- 缓存失败时的回退
 
-Implement:
-1. Choose caching solution (Redis, in-memory, etc.)
-2. Cache key design
-3. Invalidation logic
-4. Fallback handling
-5. Metrics and monitoring
-6. Tests for cache behavior
+实施：
+1. 选择缓存解决方案（Redis、内存等）
+2. 缓存键设计
+3. 失效逻辑
+4. 回退处理
+5. 指标和监控
+6. 缓存行为的测试
 ```
 
 ## 性能分析 Prompt
@@ -179,61 +179,61 @@ Implement:
 ### 1. 识别瓶颈
 
 ```
-Profile [component] to identify performance bottlenecks.
+对 [组件] 进行性能分析以识别瓶颈。
 
-Use:
-- cProfile or py-spy for Python
-- Chrome DevTools for JavaScript
-- flamegraphs if available
+使用：
+- Python 的 cProfile 或 py-spy
+- JavaScript 的 Chrome DevTools
+- 如可用，使用 flamegraphs
 
-Provide:
-1. Top 5 slow functions/methods
-2. Memory usage patterns
-3. I/O bottlenecks (DB, network, disk)
-4. Suggested optimization priorities
+提供：
+1. 前5个最慢的函数/方法
+2. 内存使用模式
+3. I/O 瓶颈（DB、网络、磁盘）
+4. 建议的优化优先级
 ```
 
 ### 2. 基准测试
 
 ```
-Create benchmarks for [component].
+为 [组件] 创建基准测试。
 
-Define:
-- Key performance metrics (latency, throughput, memory)
-- Test scenarios (small, medium, large datasets)
-- Baseline performance
+定义：
+- 关键性能指标（延迟、吞吐量、内存）
+- 测试场景（小型、中型、大型数据集）
+- 基准性能
 
-Implement:
-1. Benchmark suite using [pytest-benchmark, benchmark.js, etc.]
-2. Multiple test cases
-3. Statistical significance (run multiple iterations)
+实施：
+1. 使用 [pytest-benchmark、benchmark.js 等] 的基准测试套件
+2. 多个测试用例
+3. 统计显著性（运行多次迭代）
 
-Output:
-- Baseline metrics
-- Benchmark results in markdown table
-- Charts if possible
+输出：
+- 基准指标
+- markdown 表格中的基准测试结果
+- 如可能，提供图表
 ```
 
 ## 常见优化模式
 
 ### 1. 批量操作
 ```
-Instead of:
+不要这样：
 for item in items:
-    save_item(item)  # Individual DB calls
+    save_item(item)  # 单独的 DB 调用
 
-Use:
-save_items(items)  # Single batch operation
+这样：
+save_items(items)  # 单个批量操作
 ```
 
 ### 2. 惰性加载
 ```
-Instead of:
+不要这样：
 def get_data():
     data = heavy_computation()
     return data
 
-Use:
+这样：
 def get_data():
     if not hasattr(get_data, '_cached'):
         get_data._cached = heavy_computation()
@@ -242,24 +242,24 @@ def get_data():
 
 ### 3. 并行处理
 ```
-Instead of:
+不要这样：
 for item in items:
-    process(item)  # Sequential
+    process(item)  # 顺序
 
-Use:
+这样：
 with ThreadPoolExecutor() as executor:
-    executor.map(process, items)  # Parallel
+    executor.map(process, items)  # 并行
 ```
 
 ### 4. 预计算
 ```
-Instead of computing on every request:
+不要在每个请求上计算：
 def get_report():
     data = compute_heavy_report()
     return data
 
-Use:
-# Precompute and cache
+这样：
+# 预计算并缓存
 def get_report():
     return load_from_cache() or compute_heavy_report()
 ```
@@ -267,30 +267,30 @@ def get_report():
 ## 优化检查清单
 
 ```
-Review the code for optimization opportunities:
+检查代码的优化机会：
 
-Algorithm:
-□ Can we improve time complexity?
-□ Can we reduce constant factors?
-□ Are we doing unnecessary work?
+算法：
+□ 我们能改善时间复杂度吗？
+□ 我们能减少常数因子吗？
+□ 我们在做不必要的工作吗？
 
-Database:
-□ Do we have N+1 queries?
-□ Are indexes being used?
-□ Can we reduce the data fetched?
+数据库：
+□ 我们有 N+1 查询吗？
+□ 索引被使用了吗？
+□ 我们能减少获取的数据吗？
 
-Memory:
-□ Are we holding references unnecessarily?
-□ Can we process in streams instead of loading all?
-□ Are there memory leaks?
+内存：
+□ 我们是否不必要地持有引用？
+□ 我们能以流式加载全部吗？
+□ 有内存泄漏吗？
 
-Caching:
-□ Can we cache expensive computations?
-□ Can we cache database results?
-□ Is the cache invalidated correctly?
+缓存：
+□ 我们能缓存昂贵的计算吗？
+□ 我们能缓存数据库结果吗？
+□ 缓存正确失效吗？
 
-I/O:
-□ Are we making redundant network calls?
-□ Can we batch operations?
-□ Can we use asynchronous I/O?
+I/O：
+□ 我们在做冗余的网络调用吗？
+□ 我们能批量操作吗？
+□ 我们能使用异步 I/O 吗？
 ```

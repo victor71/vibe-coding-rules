@@ -12,30 +12,30 @@
 ## Prompt 模板
 
 ```
-Refactor the [module/area] to [goal].
+重构 [模块/区域] 以达到 [目标]。
 
-Current state:
-- [Describe current architecture/structure]
-- Problems: [list specific problems]
+当前状态：
+- [描述当前架构/结构]
+- 问题：[列出具体问题]
 
-Target state:
-- [Describe desired architecture/structure]
-- Expected improvements: [performance, maintainability, etc.]
+目标状态：
+- [描述期望的架构/结构]
+- 预期改进：[性能、可维护性等]
 
-Requirements:
-1. Maintain backward compatibility where possible
-2. Add comprehensive tests for new structure
-3. Document any breaking changes in CHANGELOG.md
-4. Update dependent code as needed
-5. Ensure all existing tests still pass
+要求：
+1. 尽可能保持向后兼容
+2. 为新结构添加全面的测试
+3. 在 CHANGELOG.md 中记录任何破坏性变更
+4. 根据需要更新依赖代码
+5. 确保所有现有测试仍然通过
 
-Constraints:
-- [Any constraints: performance, security, compatibility]
+约束：
+- [任何约束：性能、安全、兼容性]
 
-After analysis, provide:
-1. Proposed plan before making changes
-2. Risk assessment
-3. Estimated impact on existing functionality
+分析后提供：
+1. 进行更改前的建议计划
+2. 风险评估
+3. 对现有功能的预计影响
 ```
 
 ## 实际例子
@@ -43,37 +43,37 @@ After analysis, provide:
 ### 例子：重构数据访问层
 
 ```
-Refactor the database access layer in models/db.py to use an ORM.
+重构 models/db.py 中的数据库访问层以使用 ORM。
 
-Current state:
-- Direct SQL queries scattered throughout the codebase
-- No type safety
-- Difficult to test
-- Prone to SQL injection
+当前状态：
+- 整个代码库中分散着直接的 SQL 查询
+- 没有类型安全
+- 难以测试
+- 容易受到 SQL 注入攻击
 
-Target state:
-- Use SQLAlchemy ORM
-- Type-safe models
-- Query builder pattern
-- Automatic migrations
+目标状态：
+- 使用 SQLAlchemy ORM
+- 类型安全的模型
+- 查询构建器模式
+- 自动迁移
 
-Requirements:
-1. Maintain existing API endpoints unchanged
-2. Add migration scripts
-3. Add comprehensive unit tests
-4. Update all direct SQL queries to use ORM
-5. Performance should not degrade
+要求：
+1. 保持现有 API 端点不变
+2. 添加迁移脚本
+3. 添加全面的单元测试
+4. 更新所有直接 SQL 查询以使用 ORM
+5. 性能不应下降
 
-Constraints:
-- Database schema changes must be backwards compatible
-- Cannot exceed current query performance (benchmark after)
-- Must support PostgreSQL only
+约束：
+- 数据库 schema 更改必须向后兼容
+- 不能超过当前查询性能（之后进行基准测试）
+- 必须仅支持 PostgreSQL
 
-After analysis, provide:
-1. Migration plan with steps
-2. Risk assessment (what could go wrong)
-3. Performance comparison plan
-4. Rollback strategy if something breaks
+分析后提供：
+1. 包含步骤的迁移计划
+2. 风险评估（可能出现什么问题）
+3. 性能比较计划
+4. 出现问题时的回滚策略
 ```
 
 ## 关键原则
@@ -90,14 +90,14 @@ After analysis, provide:
 
 ```
 Phase 1: Analysis and Planning
-Analyze current codebase and propose refactoring plan.
+分析当前代码库并提出重构计划。
 
 Phase 2: Core Infrastructure
-Build the new ORM layer while keeping old code working.
+在保持旧代码工作的同时构建新的 ORM 层。
 
 Phase 3: Incremental Migration
-Migrate module by module, testing each step.
+逐个模块迁移，每一步都进行测试。
 
 Phase 4: Cleanup
-Remove old code and finalize.
+删除旧代码并完成最终工作。
 ```

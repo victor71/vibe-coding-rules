@@ -12,29 +12,29 @@
 ## Prompt 模板
 
 ```
-Implement a new feature: [feature description]
+实现新功能：[功能描述]
 
-Requirements:
-- [Detailed requirement list]
+要求：
+- [详细的需求列表]
 
-Technical specifications:
-- [Technology stack, APIs, constraints]
+技术规范：
+- [技术栈、API、约束]
 
-Implementation steps:
-1. [High-level step 1]
-2. [High-level step 2]
-3. [High-level step 3]
+实施步骤：
+1. [高层步骤1]
+2. [高层步骤2]
+3. [高层步骤3]
 
-Deliverables:
-- Feature implementation
-- Unit tests
-- Integration tests (if applicable)
-- Documentation (API docs, user guide)
-- Update CHANGELOG.md
+交付物：
+- 功能实现
+- 单元测试
+- 集成测试（如适用）
+- 文档（API文档、用户指南）
+- 更新 CHANGELOG.md
 
-Context:
-- [How this fits into existing codebase]
-- [Dependencies on other modules]
+上下文：
+- [如何融入现有代码库]
+- [对其他模块的依赖]
 ```
 
 ## 实际例子
@@ -42,44 +42,44 @@ Context:
 ### 例子：实现用户通知系统
 
 ```
-Implement a user notification system.
+实现用户通知系统。
 
-Requirements:
-1. Users can subscribe to different notification types (email, push, SMS)
-2. Admin can send broadcast notifications
-3. Users can manage their notification preferences
-4. Notifications are queued and sent asynchronously
-5. Failed notifications are retried
+要求：
+1. 用户可以订阅不同的通知类型（邮件、推送、短信）
+2. 管理员可以发送广播通知
+3. 用户可以管理他们的通知偏好
+4. 通知排队并异步发送
+5. 失败的通知重试
 
-Technical specifications:
-- Use Redis for queue
-- Use existing email service (in utils/email.py)
-- Use Firebase Cloud Messaging for push
-- Use Twilio for SMS
-- REST API endpoints for all operations
-- WebSocket for real-time updates
+技术规范：
+- 使用 Redis 作为队列
+- 使用现有的邮件服务（在 utils/email.py 中）
+- 使用 Firebase Cloud Messaging 进行推送
+- 使用 Twilio 发送短信
+- 所有操作的 REST API 端点
+- 用于实时更新的 WebSocket
 
-Implementation steps:
-1. Design the notification schema (models/)
-2. Implement notification service (services/notifications/)
-3. Create REST API endpoints (api/notifications/)
-4. Implement queue workers (workers/)
-5. Add WebSocket support (websockets/)
-6. Build admin interface
-7. Write comprehensive tests
-8. Document API endpoints
+实施步骤：
+1. 设计通知 schema（models/）
+2. 实现通知服务（services/notifications/）
+3. 创建 REST API 端点（api/notifications/）
+4. 实现队列工作器（workers/）
+5. 添加 WebSocket 支持（websockets/）
+6. 构建管理界面
+7. 编写全面的测试
+8. 记录 API 端点
 
-Deliverables:
-- Complete implementation with all features
-- Unit tests for each component
-- Integration tests for API
-- API documentation in docs/api.md
-- CHANGELOG.md entry
+交付物：
+- 包含所有功能的完整实现
+- 每个组件的单元测试
+- API 的集成测试
+- docs/api.md 中的 API 文档
+- CHANGELOG.md 条目
 
-Context:
-- This integrates with existing auth system
-- Uses existing database models where possible
-- Must be production-ready with error handling and logging
+上下文：
+- 这与现有的身份验证系统集成
+- 尽可能使用现有的数据库模型
+- 必须是生产就绪的，具有错误处理和日志记录
 ```
 
 ## 实现最佳实践
@@ -137,76 +137,76 @@ Feature done.
 
 ### Phase 1: 设计
 ```
-Design the architecture for [feature].
+设计 [功能] 的架构。
 
-Provide:
-1. Database schema
-2. File structure
-3. API endpoints
-4. Key components and their responsibilities
-5. Dependencies on existing code
+提供：
+1. 数据库 schema
+2. 文件结构
+3. API 端点
+4. 关键组件及其职责
+5. 对现有代码的依赖
 
-Don't write code yet, just the design.
+先不要写代码，只需设计。
 ```
 
 ### Phase 2: 核心实现
 ```
-Implement the core components based on the design.
+基于设计实现核心组件。
 
-Focus on:
-- Models and database schema
-- Core business logic
-- Storage layer
+专注于：
+- 模型和数据库 schema
+- 核心业务逻辑
+- 存储层
 
-Skip: API endpoints, tests, documentation for now.
+跳过：API 端点、测试、文档暂时跳过。
 ```
 
 ### Phase 3: API 和测试
 ```
-Implement the REST API and tests.
+实现 REST API 和测试。
 
-Based on the core implementation, add:
-- API endpoints (POST/GET/PUT/DELETE)
-- Input validation
-- Error handling
-- Unit tests
-- Integration tests
+基于核心实现，添加：
+- API 端点（POST/GET/PUT/DELETE）
+- 输入验证
+- 错误处理
+- 单元测试
+- 集成测试
 ```
 
 ### Phase 4: 文档和清理
 ```
-Complete the feature:
+完成功能：
 
-1. Write comprehensive API documentation
-2. Add code comments where needed
-3. Update CHANGELOG.md
-4. Add any missing tests
-5. Code cleanup (formatting, naming)
+1. 编写全面的 API 文档
+2. 在需要的地方添加代码注释
+3. 更新 CHANGELOG.md
+4. 添加任何缺失的测试
+5. 代码清理（格式化、命名）
 ```
 
 ## 集成第三方服务
 
 ```
-Integrate [Service Name] for [purpose].
+集成 [服务名称] 用于 [目的]。
 
-Requirements:
-- [What the integration should do]
-- [Configuration needs]
-- [Error handling requirements]
+要求：
+- [集成应该做什么]
+- [配置需求]
+- [错误处理要求]
 
-Service details:
-- API: [API documentation link or description]
-- Authentication: [How to authenticate]
-- Rate limits: [If any]
-- Pricing/quotas: [If relevant]
+服务详情：
+- API：[API 文档链接或描述]
+- 身份验证：[如何身份验证]
+- 速率限制：[如有]
+- 定价/配额：[如相关]
 
-Implementation:
-1. Read the service documentation (if available locally)
-2. Design the integration architecture
-3. Implement the service client
-4. Add configuration for API keys
-5. Implement retry logic
-6. Add error handling and logging
-7. Write tests (use mocks for external calls)
-8. Document configuration and usage
+实施：
+1. 阅读服务文档（如本地可用）
+2. 设计集成架构
+3. 实现服务客户端
+4. 添加 API 密钥配置
+5. 实现重试逻辑
+6. 添加错误处理和日志记录
+7. 编写测试（对外部调用使用 mocks）
+8. 记录配置和用法
 ```

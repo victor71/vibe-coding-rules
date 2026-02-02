@@ -15,7 +15,7 @@
 ### 基础模板
 
 ```
-Fix the bug in [file/area]: [concise bug description]
+修复 [文件/区域] 中的 bug：[简洁的bug描述]
 
 ## Bug 描述
 [详细说明bug的表现和影响]
@@ -26,10 +26,10 @@ Fix the bug in [file/area]: [concise bug description]
 - 报错信息：[错误日志或截图]
 
 ## 步骤
-1. Read the file and understand the issue
-2. Make the fix
-3. Add a test to prevent regression (如果适用)
-4. Run tests to ensure nothing breaks
+1. 读取文件并理解问题
+2. 进行修复
+3. 添加测试以防止回归（如果适用）
+4. 运行测试确保不破坏现有功能
 
 ## 要求
 - [ ] 最小改动原则（只改必要的）
@@ -48,7 +48,7 @@ Fix the bug in [file/area]: [concise bug description]
 ### 进阶模板（复杂bug修复）
 
 ```
-Fix the following bug:
+修复以下bug：
 
 ## Bug 描述
 [详细的bug描述]
@@ -87,7 +87,7 @@ Fix the following bug:
 - [ ] 运行所有测试
 - [ ] 检查相关功能的回归
 
-When done, run:
+完成后，运行：
 openclaw gateway wake --text "✅ Bug修复完成：[bug名称]" --mode now
 ```
 
@@ -99,19 +99,18 @@ openclaw gateway wake --text "✅ Bug修复完成：[bug名称]" --mode now
 
 **输入：**
 ```
-Fix the login timeout issue in auth_service.py.
+修复 auth_service.py 中的登录超时问题。
 
-The timeout is currently set to 5 seconds but should be 30 seconds
-for slow network connections.
+超时时间当前设置为5秒，但对于慢速网络连接应该设置为30秒。
 
-Steps:
-1. Read auth_service.py
-2. Find the timeout configuration
-3. Change it from 5 to 30 seconds
-4. Add a comment explaining why 30s is appropriate
-5. No tests needed, this is a configuration change
+步骤：
+1. 读取 auth_service.py
+2. 找到超时配置
+3. 从5改为30秒
+4. 添加注释说明为什么30秒是合适的
+5. 这是配置更改，不需要测试
 
-Context: Users with slow networks are experiencing frequent timeouts.
+背景：网络较慢的用户频繁遇到超时问题。
 ```
 
 **AI输出示例：**
@@ -127,8 +126,8 @@ class AuthService:
 # auth_service.py (修改后)
 class AuthService:
     def __init__(self):
-        # Increased from 5s to 30s to accommodate slow network connections
-        # Users in remote areas frequently experienced timeouts at 5s
+        # 从5秒增加到30秒，以适应慢速网络连接
+        # 远程地区的用户在5秒时经常超时
         self.timeout = 30  # seconds
 ```
 
@@ -138,17 +137,17 @@ class AuthService:
 
 **输入：**
 ```
-Fix the null pointer crash in user_profile.js.
+修复 user_profile.js 中的空指针崩溃问题。
 
-When user.profile is undefined, the app crashes at line 45.
+当 user.profile 未定义时，应用在第45行崩溃。
 
-Steps:
-1. Read user_profile.js and find the issue
-2. Add null check before accessing profile properties
-3. Add a test case with undefined profile
-4. Run all tests to ensure nothing breaks
+步骤：
+1. 读取 user_profile.js 并找到问题
+2. 在访问 profile 属性前添加空值检查
+3. 添加一个 profile 未定义的测试用例
+4. 运行所有测试确保不破坏现有功能
 
-Context: This is critical for user onboarding.
+背景：这对用户注册流程很关键。
 ```
 
 **AI输出示例：**
@@ -167,7 +166,7 @@ function renderUserProfile(user) {
 ```javascript
 // user_profile.js (修改后)
 function renderUserProfile(user) {
-  // Handle case where profile might not exist
+  // 处理 profile 不存在的情况
   if (!user || !user.profile) {
     return '<div>Profile not found</div>';
   }
@@ -179,7 +178,7 @@ function renderUserProfile(user) {
   `;
 }
 
-// Test case
+// 测试用例
 test('renderUserProfile handles undefined profile', () => {
   const result = renderUserProfile({});
   expect(result).toBe('<div>Profile not found</div>');
@@ -192,19 +191,19 @@ test('renderUserProfile handles undefined profile', () => {
 
 **输入：**
 ```
-Fix the error response in auth/api.py.
+修复 auth/api.py 中的错误响应问题。
 
-When user provides invalid credentials, the API returns 200 OK
-instead of 401 Unauthorized.
+当用户提供无效凭据时，API返回200 OK
+而不是401 Unauthorized。
 
-Steps:
-1. Find the login endpoint in auth/api.py
-2. Check the response status for invalid credentials
-3. Change it to return 401 instead of 200
-4. Add appropriate error message
-5. Add test for invalid credentials case
+步骤：
+1. 在 auth/api.py 中找到登录端点
+2. 检查无效凭据的响应状态码
+3. 将其从200改为返回401
+4. 添加适当的错误消息
+5. 为无效凭据情况添加测试
 
-Context: This is a security issue - invalid credentials should not return 200.
+背景：这是安全问题 - 无效凭据不应返回200。
 ```
 
 **AI输出示例：**
@@ -219,7 +218,7 @@ def login(request):
     if user:
         return jsonify({'token': user.token})
     else:
-        return jsonify({'error': 'Invalid credentials'})  # BUG: Returns 200!
+        return jsonify({'error': 'Invalid credentials'})  # BUG: 返回200!
 ```
 
 ```python
@@ -232,13 +231,13 @@ def login(request):
     if user:
         return jsonify({'token': user.token}), 200
     else:
-        # Return 401 Unauthorized for invalid credentials
+        # 为无效凭据返回401 Unauthorized
         return jsonify({
             'error': 'Invalid credentials',
             'message': 'Username or password is incorrect'
         }), 401
 
-# Test case
+# 测试用例
 def test_login_invalid_credentials(client):
     response = client.post('/api/login', json={
         'username': 'wrong',
@@ -263,7 +262,7 @@ def test_login_invalid_credentials(client):
 
 说明具体的bug位置、表现和影响。
 
-❌ Bad: "Fix the login bug"
+❌ Bad: "Fix login bug"
 ✅ Good: "Fix login timeout: change timeout from 5s to 30s in auth_service.py:45"
 
 ### 3. 添加测试
@@ -271,10 +270,10 @@ def test_login_invalid_credentials(client):
 简单测试可以防止回归。
 
 ```python
-# Test the fix
+# 测试修复
 def test_timeout_handling():
     service = AuthService()
-    assert service.timeout == 30  # Fixed value
+    assert service.timeout == 30  # 修复后的值
 ```
 
 ### 4. 添加注释
@@ -282,8 +281,8 @@ def test_timeout_handling():
 说明修改原因，方便后续维护。
 
 ```python
-# Changed from 5s to 30s to accommodate slow network connections
-# Related issue: #123
+# 从5秒改为30秒以适应慢速网络连接
+# 相关issue: #123
 self.timeout = 30
 ```
 
@@ -320,7 +319,7 @@ self.timeout = 30
 如果知道文件，直接指明：
 
 ```
-Fix in auth/api.py, line 45-50
+修复位置：auth/api.py, 第45-50行
 ```
 
 ---
@@ -346,7 +345,7 @@ AttributeError: 'NoneType' object has no attribute 'id'
 git checkout -b fix/login-timeout
 
 # 2. 修复bug（使用Claude Code）
-claude 'Fix the login timeout bug in auth_service.py...'
+claude 'Fix login timeout bug in auth_service.py...'
 
 # 3. 验证修复
 git diff  # 查看改动
