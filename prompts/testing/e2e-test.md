@@ -12,32 +12,32 @@
 ## Prompt 模板
 
 ```
-Write E2E tests for the following user flow:
+为以下用户流程编写端到端测试：
 
-## User Flow
+## 用户流程
 [描述完整的用户旅程]
 
-## Flow Steps
+## 流程步骤
 1. [步骤 1]
 2. [步骤 2]
 3. [步骤 3]
 ...
 
-## Test Requirements
-1. Use real browser automation (Playwright/Cypress/Puppeteer)
-2. Test complete flow (don't skip steps)
-3. Verify key elements and text
-4. Handle async operations (loading, emails)
-5. Clean up test data
+## 测试要求
+1. 使用真实浏览器自动化（Playwright/Cypress/Puppeteer）
+2. 测试完整流程（不跳过步骤）
+3. 验证关键元素和文本
+4. 处理异步操作（加载、邮件）
+5. 清理测试数据
 
-## Test Framework
+## 测试框架
 [使用的 E2E 框架，如 Playwright/Cypress]
 
-## Test Data
+## 测试数据
 [需要预置的数据]
 
-## Output
-Provide complete E2E test code.
+## 输出
+提供完整的端到端测试代码。
 ```
 
 ## 实际例子

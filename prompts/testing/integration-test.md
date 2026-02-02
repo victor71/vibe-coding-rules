@@ -12,31 +12,31 @@
 ## Prompt 模板
 
 ```
-Write integration tests for the following API:
+为以下 API 编写集成测试：
 
-## API Definition
-- **Method:** [GET/POST/PUT/DELETE]
-- **Path:** /api/[endpoint]
-- **Authentication:** [Bearer Token / API Key / None]
+## API 定义
+- **方法：** [GET/POST/PUT/DELETE]
+- **路径：** /api/[endpoint]
+- **认证：** [Bearer Token / API Key / None]
 
-## Request
+## 请求
 [请求体或参数定义]
 
-## Response
-- **200 OK:** [成功响应]
-- **400 Bad Request:** [参数错误]
-- **401 Unauthorized:** [未认证]
-- **403 Forbidden:** [权限不足]
-- **404 Not Found:** [资源不存在]
-- **500 Internal Server Error:** [服务器错误]
+## 响应
+- **200 OK：** [成功响应]
+- **400 Bad Request：** [参数错误]
+- **401 Unauthorized：** [未认证]
+- **403 Forbidden：** [权限不足]
+- **404 Not Found：** [资源不存在]
+- **500 Internal Server Error：** [服务器错误]
 
-## Test Requirements
-1. Test normal success case
-2. Test parameter validation
-3. Test authentication (if applicable)
-4. Test authorization (different user roles)
-5. Test database verification (record actually created/updated)
-6. Test error cases
+## 测试要求
+1. 测试正常成功情况
+2. 测试参数验证
+3. 测试认证（如适用）
+4. 测试授权（不同用户角色）
+5. 测试数据库验证（记录实际已创建/更新）
+6. 测试错误情况
 
 ## Test Framework
 [使用的框架，如 pytest+httpx/Jest+supertest]

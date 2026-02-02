@@ -13,38 +13,38 @@
 ## Prompt 模板
 
 ```
-Write performance test scripts for the following API:
+为以下 API 编写性能测试脚本：
 
-## API Definition
-- **Method:** [GET/POST/PUT/DELETE]
-- **Path:** /api/[endpoint]
-- **Headers:** [认证头等]
+## API 定义
+- **方法：** [GET/POST/PUT/DELETE]
+- **路径：** /api/[endpoint]
+- **请求头：** [认证头等]
 
-## Performance Targets
-- **Response Time (p50):** < X ms
-- **Response Time (p95):** < Y ms
-- **Response Time (p99):** < Z ms
-- **Throughput:** > X req/s
-- **Error Rate:** < Y %
+## 性能目标
+- **响应时间 (p50)：** < X ms
+- **响应时间 (p95)：** < Y ms
+- **响应时间 (p99)：** < Z ms
+- **吞吐量：** > X req/s
+- **错误率：** < Y %
 
-## Test Scenarios
-1. **Baseline test** - 10 concurrent users
-2. **Normal load** - 100 concurrent users
-3. **Stress test** - 1000 concurrent users
-4. **Spike test** - Sudden spike to 2000 users
-5. **Soak test** - Sustained load for 30 minutes
+## 测试场景
+1. **基准测试** - 10 并发用户
+2. **正常负载** - 100 并发用户
+3. **压力测试** - 1000 并发用户
+4. **突发测试** - 突然增加到 2000 用户
+5. **持久测试** - 持续负载 30 分钟
 
-## Test Tool
+## 测试工具
 [k6/JMeter/Locust/Gatling]
 
-## Requirements
-1. Provide complete test script
-2. Include result analysis logic
-3. Generate performance report
-4. Compare against targets
+## 要求
+1. 提供完整的测试脚本
+2. 包含结果分析逻辑
+3. 生成性能报告
+4. 与目标值进行比较
 
-## Output
-Provide test script and usage instructions.
+## 输出
+提供测试脚本和使用说明。
 ```
 
 ## 实际例子

@@ -12,28 +12,28 @@
 ## Prompt 模板
 
 ```
-Write unit tests for the following code:
+为以下代码编写单元测试：
 
-## Code
+## 代码
 [粘贴代码]
 
-## Test Framework
+## 测试框架
 [使用的测试框架，如 Jest/Pytest/PHPUnit]
 
-## Requirements
-1. Test normal cases (Happy Path)
-2. Test edge cases (empty input, max/min values)
-3. Test error cases (invalid input, null/undefined)
-4. Use descriptive test names
-5. Use given-when-then pattern (optional)
-6. At least 5 test cases
+## 要求
+1. 测试正常情况（Happy Path）
+2. 测试边界情况（空输入、最大值/最小值）
+3. 测试异常情况（无效输入、null/undefined）
+4. 使用描述性测试名称
+5. 使用 given-when-then 模式（可选）
+6. 至少5个测试用例
 
-## Output Format
-Provide the complete test file, including:
-- All test cases
-- Necessary setup/teardown
-- Mocks/Stubs (if needed)
-- Clear comments explaining test intent
+## 输出格式
+提供完整的测试文件，包括：
+- 所有测试用例
+- 必要的 setup/teardown
+- Mocks/Stubs（如需要）
+- 清晰的注释说明测试意图
 ```
 
 ## 实际例子
