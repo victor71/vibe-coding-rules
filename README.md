@@ -25,7 +25,10 @@ vibe-coding-rules/
 │   │   │   ├── requirement-clarification.md
 │   │   │   ├── solution-design.md
 │   │   │   └── architecture-review.md
-│   │   └── [*.md]                  # Chinese templates (root level)
+│   │   └── cn/                      # Chinese templates
+│   │       ├── requirement-clarification.md
+│   │       ├── solution-design.md
+│   │       └── architecture-review.md
 │   │
 │   ├── development/            # 开发阶段
 │   │   ├── en/                      # English templates
@@ -82,22 +85,22 @@ vibe-coding-rules/
 根据开发阶段，选择合适的模板：
 
 **分析阶段（prompts/analysis/）：**
-- 需求澄清 → `requirement-clarification.md`
-- 方案设计 → `solution-design.md`
-- 架构审查 → `architecture-review.md`
+- 需求澄清 → `cn/requirement-clarification.md`（中文）或 `en/requirement-clarification.md`（英文）
+- 方案设计 → `cn/solution-design.md`（中文）或 `en/solution-design.md`（英文）
+- 架构审查 → `cn/architecture-review.md`（中文）或 `en/architecture-review.md`（英文）
 
 **开发阶段（prompts/development/）：**
-- 快速修复 → `quick-fix.md`
-- 复杂重构 → `complex-refactor.md`
-- 新功能 → `new-feature.md`
-- 性能优化 → `optimization.md`
+- 快速修复 → `zh/quick-fix.md`（中文）或 `en/quick-fix.md`（英文）
+- 复杂重构 → `zh/complex-refactor.md`（中文）或 `en/complex-refactor.md`（英文）
+- 新功能 → `zh/new-feature.md`（中文）或 `en/new-feature.md`（英文）
+- 性能优化 → `zh/optimization.md`（中文）或 `en/optimization.md`（英文）
 
 **测试阶段（prompts/testing/）：**
-- 单元测试 → `unit-test.md`
-- 集成测试 → `integration-test.md`
-- E2E 测试 → `e2e-test.md`
-- 性能测试 → `performance-test.md`
-- 代码审查 → `code-review.md`
+- 单元测试 → `zh/unit-test.md`（中文）或 `en/unit-test.md`（英文）
+- 集成测试 → `zh/integration-test.md`（中文）或 `en/integration-test.md`（英文）
+- E2E 测试 → `zh/e2e-test.md`（中文）或 `en/e2e-test.md`（英文）
+- 性能测试 → `zh/performance-test.md`（中文）或 `en/performance-test.md`（英文）
+- 代码审查 → `zh/code-review.md`（中文）或 `en/code-review.md`（英文）
 
 ### 3. 学习 Prompt 写作
 
