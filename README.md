@@ -228,7 +228,7 @@ Phase 4: 测试验证
 # 使用 Phase 1 澄清需求
 阅读 prompts/analysis/requirement-clarification.md
 
-# 使用 Phase 2 设计方案
+# 使用 Phase 2 设计方案（复杂 bug 需要此步骤，简单 bug 可跳过）
 阅读 prompts/analysis/solution-design.md
 
 # 使用 Phase 3 编写代码
