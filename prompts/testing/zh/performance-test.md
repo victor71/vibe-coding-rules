@@ -79,7 +79,7 @@ Write performance test scripts for the products API.
 ## Test Tool
 k6
 
-## Requirements
+## 要求
 1. Provide complete test script
 2. Include custom metrics (response time, error rate, throughput)
 3. Generate HTML performance report
@@ -400,13 +400,13 @@ Analyze the following performance test results:
 - Network: [bandwidth]
 - Database: [type, version]
 
-## Requirements
+## 要求
 1. Identify bottlenecks
 2. Compare against targets
 3. Suggest optimization strategies
 4. Prioritize improvements
 
-## Output Format
+## 输出格式
 ### Performance Analysis
 
 #### Overall Results
@@ -447,7 +447,7 @@ Optimize [component/code] for performance.
 - Must maintain [Y]
 - Limited to [Z] resources
 
-## Requirements
+## 要求
 1. Analyze the current implementation
 2. Identify optimization opportunities
 3. Implement improvements
@@ -469,7 +469,7 @@ Optimize this code to eliminate N+1 queries:
 
 The code is making a database query for each item in a loop.
 
-## Requirements
+## 要求
 1. Use joins or subqueries to fetch all data in fewer queries
 2. Add benchmarks before and after
 3. Ensure the result is the same
@@ -487,7 +487,7 @@ Analyze and optimize this slow query:
 - Execution time: X ms
 - Rows returned: Y
 
-## Requirements
+## 要求
 1. Use EXPLAIN ANALYZE to identify bottlenecks
 2. Suggest appropriate indexes
 3. Provide optimized query
@@ -503,7 +503,7 @@ Debug memory leak in [component].
 - Memory usage grows over time
 - Eventually crashes with OOM
 
-## Requirements
+## 要求
 1. Identify the source of memory leak
 2. Fix the leak
 3. Add memory monitoring

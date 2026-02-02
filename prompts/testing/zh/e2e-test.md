@@ -64,7 +64,7 @@ Write E2E tests for the user registration and login flow.
 4. Handle email verification (mock or real)
 5. Clean up test data after test
 
-## Test Framework
+## 测试框架
 Playwright with JavaScript/TypeScript
 
 ## Test Data

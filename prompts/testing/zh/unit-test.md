@@ -68,10 +68,10 @@ def calculate_age(birth_date):
     return age
 ```
 
-## Test Framework
+## 测试框架
 pytest
 
-## Requirements
+## 要求
 1. Test normal cases (valid email, adult age)
 2. Test edge cases (empty, boundary dates)
 3. Test error cases (invalid formats, None)
@@ -79,7 +79,7 @@ pytest
 5. Use given-when-then pattern
 6. At least 5 test cases per function
 
-## Output Format
+## 输出格式
 Provide the complete test file with:
 - All test cases
 - Fixtures if needed
@@ -270,18 +270,18 @@ Implement [feature] using TDD.
 Requirements:
 [功能需求]
 
-## TDD Process
+## TDD 流程
 1. **Red**: Write a failing test
 2. **Green**: Write simplest code to make test pass
 3. **Refactor**: Improve code while keeping tests passing
 
-## Requirements
+## 要求
 1. Follow TDD cycle step by step
 2. Write only one test per cycle
 3. Show test code and implementation code for each step
 4. Provide complete code at the end
 
-## Output Format
+## 输出格式
 ### Cycle 1: Test Case X
 **Test Code:**
 ```python
@@ -301,20 +301,20 @@ Requirements:
 ```
 Write unit tests for [function/class] that depends on external services.
 
-## Function to Test
+## 要测试的函数
 [粘贴代码]
 
-## Dependencies
+## 依赖
 - [外部服务 1]
 - [外部服务 2]
 
-## Requirements
+## 要求
 1. Mock all external dependencies
 2. Test that dependencies are called correctly
 3. Test error handling when dependencies fail
 4. Use pytest-mock/unittest.mock
 
-## Output Format
+## 输出格式
 Provide test file with:
 - Proper mock setup
 - Verification of mock calls
@@ -380,27 +380,27 @@ class TestPaymentService:
 ```
 Analyze the test coverage for [module/function].
 
-## Coverage Report
+## 覆盖率报告
 [粘贴覆盖率报告]
 
-## Requirements
+## 要求
 1. Identify untested critical code paths
 2. Identify areas needing additional tests
 3. Suggest specific test cases
 
-## Output Format
-### Coverage Summary
+## 输出格式
+### 覆盖率汇总
 - Overall Coverage: X%
 - Line Coverage: X%
 - Branch Coverage: X%
 
-### Untested Critical Code
+### 未测试的关键代码
 1. [File:Line]
    - Functionality: [description]
    - Risk: [why this needs testing]
    - Suggestion: [how to test]
 
-### Test Suggestions
+### 测试建议
 1. [Suggestion 1]
 2. [Suggestion 2]
 ```

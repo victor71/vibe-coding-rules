@@ -38,7 +38,7 @@
 5. 测试数据库验证（记录实际已创建/更新）
 6. 测试错误情况
 
-## Test Framework
+## 测试框架
 [使用的框架，如 pytest+httpx/Jest+supertest]
 
 ## Mock Requirements
@@ -85,7 +85,7 @@ Write integration tests for the user creation API.
 5. Test authentication (no token returns 401)
 6. Test database verification (record actually written)
 
-## Test Framework
+## 测试框架
 pytest + httpx + pytest-asyncio
 
 ## Mock Requirements
