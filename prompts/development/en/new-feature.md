@@ -1,15 +1,15 @@
 # New Feature Prompt Template
 
-实现新功能的 prompt 模板。
+Template for implementing new features.
 
-## 场景
+## Scenarios
 
-- 实现新功能
-- 添加新 API 端点
-- 集成新服务
-- 添加 UI 组件
+- Implement new features
+- Add new API endpoints
+- Integrate new services
+- Add UI components
 
-## Prompt 模板
+## Prompt Template
 
 ```
 Implement a new feature: [feature description]
@@ -37,105 +37,64 @@ Context:
 - [Dependencies on other modules]
 ```
 
-## 实际例子
+## Best Practices
 
-### 例子：实现用户通知系统
+### 1. Clear Requirements
 
 ```
-Implement a user notification system.
-
-Requirements:
-1. Users can subscribe to different notification types (email, push, SMS)
-2. Admin can send broadcast notifications
-3. Users can manage their notification preferences
-4. Notifications are queued and sent asynchronously
-5. Failed notifications are retried
-
-Technical specifications:
-- Use Redis for queue
-- Use existing email service (in utils/email.py)
-- Use Firebase Cloud Messaging for push
-- Use Twilio for SMS
-- REST API endpoints for all operations
-- WebSocket for real-time updates
-
-Implementation steps:
-1. Design the notification schema (models/)
-2. Implement notification service (services/notifications/)
-3. Create REST API endpoints (api/notifications/)
-4. Implement queue workers (workers/)
-5. Add WebSocket support (websockets/)
-6. Build admin interface
-7. Write comprehensive tests
-8. Document API endpoints
-
-Deliverables:
-- Complete implementation with all features
-- Unit tests for each component
-- Integration tests for API
-- API documentation in docs/api.md
-- CHANGELOG.md entry
-
-Context:
-- This integrates with existing auth system
-- Uses existing database models where possible
-- Must be production-ready with error handling and logging
-```
-
-## 实现最佳实践
-
-### 1. 明确需求
-```
-✅ 好：
+✅ Good:
 Users can upload images up to 10MB. Must validate file type (JPG, PNG, GIF).
 Resize to max 1920x1080. Store in S3.
 
-❌ 差：
+❌ Bad:
 Implement image upload.
 ```
 
-### 2. 分步实施
+### 2. Step-by-Step Implementation
+
 ```
-✅ 好：
+✅ Good:
 Phase 1: Database schema and models
 Phase 2: Storage service (S3 integration)
 Phase 3: API endpoints
 Phase 4: Validation and security
 Phase 5: Tests and documentation
 
-❌ 差：
+❌ Bad:
 Build everything at once.
 ```
 
-### 3. 测试覆盖
+### 3. Test Coverage
+
 ```
-✅ 好：
+✅ Good:
 - Unit tests for each function
 - Integration tests for API
 - Edge case testing (invalid files, oversized files)
 - Error handling tests
 
-❌ 差：
+❌ Bad:
 Write some tests.
 ```
 
-### 4. 文档完整
+### 4. Complete Documentation
+
 ```
-✅ 好：
+✅ Good:
 - API documentation with examples
 - Configuration guide
 - Deployment instructions
 - CHANGELOG entry with migration notes
 
-❌ 差：
+❌ Bad:
 Feature done.
 ```
 
-## 复杂功能的分阶段 Prompt
+## Phased Prompts for Complex Features
 
-对于大型功能，使用多个 prompt：
+For large features, use multiple prompts:
 
-### Phase 1: 设计
+### Phase 1: Design
 ```
 Design the architecture for [feature].
 
@@ -149,7 +108,7 @@ Provide:
 Don't write code yet, just the design.
 ```
 
-### Phase 2: 核心实现
+### Phase 2: Core Implementation
 ```
 Implement the core components based on the design.
 
@@ -161,7 +120,7 @@ Focus on:
 Skip: API endpoints, tests, documentation for now.
 ```
 
-### Phase 3: API 和测试
+### Phase 3: API and Tests
 ```
 Implement the REST API and tests.
 
@@ -173,7 +132,7 @@ Based on the core implementation, add:
 - Integration tests
 ```
 
-### Phase 4: 文档和清理
+### Phase 4: Documentation and Cleanup
 ```
 Complete the feature:
 
@@ -182,31 +141,4 @@ Complete the feature:
 3. Update CHANGELOG.md
 4. Add any missing tests
 5. Code cleanup (formatting, naming)
-```
-
-## 集成第三方服务
-
-```
-Integrate [Service Name] for [purpose].
-
-Requirements:
-- [What the integration should do]
-- [Configuration needs]
-- [Error handling requirements]
-
-Service details:
-- API: [API documentation link or description]
-- Authentication: [How to authenticate]
-- Rate limits: [If any]
-- Pricing/quotas: [If relevant]
-
-Implementation:
-1. Read the service documentation (if available locally)
-2. Design the integration architecture
-3. Implement the service client
-4. Add configuration for API keys
-5. Implement retry logic
-6. Add error handling and logging
-7. Write tests (use mocks for external calls)
-8. Document configuration and usage
 ```

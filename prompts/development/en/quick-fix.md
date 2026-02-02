@@ -1,15 +1,16 @@
 # Quick Fix Prompt Template
 
-快速修复简单 bug 的 prompt 模板。
+Template for fixing simple bugs.
 
-## 场景
+## Scenarios
 
-- 简单的语法错误
-- 明确的 bug（已知问题）
-- 单文件修改
-- 不影响整体架构
+- Simple syntax errors
+- Known/明确的 bugs
+- Single file or minimal changes
+- Doesn't affect overall architecture
+- Can be completed in 1-2 hours
 
-## Prompt 模板
+## Prompt Template
 
 ```
 Fix the bug in [file/area]: [concise bug description]
@@ -24,9 +25,9 @@ Context:
 - [Any relevant context or constraints]
 ```
 
-## 实际例子
+## Examples
 
-### 例子 1：修复登录超时问题
+### Example 1: Fix login timeout
 
 ```
 Fix the login timeout issue in auth_service.py.
@@ -42,7 +43,7 @@ Steps:
 5. No tests needed, this is a configuration change
 ```
 
-### 例子 2：修复空指针崩溃
+### Example 2: Fix null pointer crash
 
 ```
 Fix the null pointer crash in user_profile.js.
@@ -58,9 +59,85 @@ Steps:
 Context: This is critical for user onboarding.
 ```
 
-## 关键原则
+### Example 3: Fix API error response
 
-1. **具体** - 说明文件、行号（如果知道）
-2. **明确步骤** - 告诉 Claude 要做什么
-3. **添加测试** - 防止回归
-4. **提供上下文** - 相关的约束或重要性
+```
+Fix the error response in auth/api.py.
+
+When user provides invalid credentials, the API returns 200 OK
+instead of 401 Unauthorized.
+
+Steps:
+1. Find the login endpoint in auth/api.py
+2. Check the response status for invalid credentials
+3. Change it to return 401 instead of 200
+4. Add appropriate error message
+5. Add test for invalid credentials case
+
+Context: This is a security issue - invalid credentials should not return 200.
+```
+
+## Best Practices
+
+### 1. Minimal Changes
+
+Only modify what's necessary, don't make big changes.
+
+❌ Bad: Refactor the entire module
+✅ Good: Only fix the bug lines
+
+### 2. Clear Description
+
+Explain the specific bug location, symptoms, and impact.
+
+❌ Bad: "Fix login bug"
+✅ Good: "Fix login timeout: change timeout from 5s to 30s in auth_service.py:45"
+
+### 3. Add Tests
+
+Simple tests can prevent regression.
+
+```python
+# Test fix
+def test_timeout_handling():
+    service = AuthService()
+    assert service.timeout == 30  # Fixed value
+```
+
+### 4. Add Comments
+
+Explain the reason for changes for future maintenance.
+
+```python
+# Changed from 5s to 30s to accommodate slow network connections
+# Related issue: #123
+self.timeout = 30
+```
+
+---
+
+## Quick Reference
+
+```bash
+# 1. Create branch
+git checkout -b fix/login-timeout
+
+# 2. Fix the bug (using Claude Code)
+claude 'Fix login timeout bug in auth_service.py...'
+
+# 3. Verify the fix
+git diff  # View changes
+npm test  # Run tests
+
+# 4. Commit
+git add .
+git commit -m "fix: increase login timeout from 5s to 30s
+
+- Accommodates slow network connections
+- Users in remote areas no longer timeout
+
+Fixes #123"
+
+# 5. Push
+git push -u origin fix/login-timeout
+```

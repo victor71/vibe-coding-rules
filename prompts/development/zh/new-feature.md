@@ -87,48 +87,48 @@
 ### 1. 明确需求
 ```
 ✅ 好：
-Users can upload images up to 10MB. Must validate file type (JPG, PNG, GIF).
-Resize to max 1920x1080. Store in S3.
+用户可以上传最大 10MB 的图片。必须验证文件类型（JPG、PNG、GIF）。
+调整到最大 1920x1080。存储到 S3。
 
 ❌ 差：
-Implement image upload.
+实现图片上传。
 ```
 
 ### 2. 分步实施
 ```
 ✅ 好：
-Phase 1: Database schema and models
-Phase 2: Storage service (S3 integration)
-Phase 3: API endpoints
-Phase 4: Validation and security
-Phase 5: Tests and documentation
+Phase 1: 数据库 schema 和模型
+Phase 2: 存储服务（S3 集成）
+Phase 3: API 端点
+Phase 4: 验证和安全
+Phase 5: 测试和文档
 
 ❌ 差：
-Build everything at once.
+一次性构建所有内容。
 ```
 
 ### 3. 测试覆盖
 ```
 ✅ 好：
-- Unit tests for each function
-- Integration tests for API
-- Edge case testing (invalid files, oversized files)
-- Error handling tests
+- 每个函数的单元测试
+- API 的集成测试
+- 边缘情况测试（无效文件、超大文件）
+- 错误处理测试
 
 ❌ 差：
-Write some tests.
+写一些测试。
 ```
 
 ### 4. 文档完整
 ```
 ✅ 好：
-- API documentation with examples
-- Configuration guide
-- Deployment instructions
-- CHANGELOG entry with migration notes
+- 带示例的 API 文档
+- 配置指南
+- 部署说明
+- 带迁移说明的 CHANGELOG 条目
 
 ❌ 差：
-Feature done.
+功能完成。
 ```
 
 ## 复杂功能的分阶段 Prompt
