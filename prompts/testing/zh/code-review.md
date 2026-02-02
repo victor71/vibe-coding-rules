@@ -21,7 +21,7 @@ Focus on:
 - Code style and best practices
 - Test coverage
 
-For each issue found:
+对于每个问题：
 1. Severity: Critical/High/Medium/Low
 2. Description: Clear explanation
 3. Suggested fix: Code example if possible
@@ -48,7 +48,7 @@ Focus on:
 
 This code processes real payments, so security is critical.
 
-For each issue found:
+对于每个问题：
 1. Severity: Critical/High/Medium/Low
 2. Description: Clear explanation
 3. Suggested fix: Code example

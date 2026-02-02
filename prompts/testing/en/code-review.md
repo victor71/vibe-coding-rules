@@ -1,15 +1,15 @@
 # Code Review Prompt Template
 
-代码审查的 prompt 模板。
+Template for reviewing code.
 
-## 场景
+## Scenarios
 
-- PR 审查
-- 代码质量检查
-- 安全审计
-- 最佳实践检查
+- PR review
+- Code quality checks
+- Security audits
+- Best practices checks
 
-## Prompt 模板
+## Prompt Template
 
 ```
 Review this code: [diff or file]
@@ -33,84 +33,64 @@ Context:
 - [Relevant context: this is payment code, user-facing, etc.]
 ```
 
-## 实际例子
+## Best Practices
 
-### 例子：审查支付模块 PR
+### 1. Be Thorough but Constructive
 
-```
-Review this PR for the payment module.
+Focus on code quality, not personal style.
 
-Focus on:
-- Security: No API key leaks, proper validation, no injection risks
-- Bugs: Edge cases, error handling
-- Performance: Database queries, unnecessary loops
-- Best practices: Code organization, naming, comments
+### 2. Provide Clear Feedback
 
-This code processes real payments, so security is critical.
+For each issue:
+- What's the problem?
+- Why is it a problem?
+- How to fix it?
 
-For each issue found:
-1. Severity: Critical/High/Medium/Low
-2. Description: Clear explanation
-3. Suggested fix: Code example
-4. Location: File and line number
+### 3. Use Severity Levels
 
-Here's the diff: [paste diff]
-```
+| Level | When to use |
+|--------|-------------|
+| Critical | Security issues, data loss risks |
+| High | Bugs affecting users, performance issues |
+| Medium | Code quality, maintainability |
+| Low | Style improvements, nitpicks |
 
-### 例子：全面代码审查
+### 4. Include Code Examples
 
-```
-Review the auth module (auth_service.py, auth_middleware.py).
+Show exactly what the fix should look like.
 
-Check for:
-- Common security issues (XSS, CSRF, SQL injection, auth bypass)
-- Error handling and edge cases
-- Performance bottlenecks
-- Code duplication
-- Missing tests
-- Deprecated APIs or patterns
+## Review Dimensions
 
-Context: This module handles user authentication and session management.
-
-Provide:
-1. Summary of findings
-2. Critical issues (must fix before merge)
-3. Suggestions for improvement
-4. Positive aspects (what's done well)
-```
-
-## 审查维度
-
-### 安全 🔒
-- SQL 注入
+### Security 🔒
+- SQL injection
 - XSS
 - CSRF
-- 认证绕过
-- 权限提升
-- 敏感信息泄露
+- Authentication bypass
+- Privilege escalation
+- Sensitive data leaks
 
-### 正确性 🐛
-- 边界条件
-- 错误处理
-- 并发问题
-- 数据一致性
-- 空值/undefined 处理
+### Correctness 🐛
+- Edge conditions
+- Error handling
+- Concurrency issues
+- Data consistency
+- Null/undefined handling
 
-### 性能 ⚡
-- 不必要的循环
-- N+1 查询
-- 内存泄漏
-- 缺少缓存
-- 低效算法
+### Performance ⚡
+- Unnecessary loops
+- N+1 queries
+- Memory leaks
+- Missing indexes
+- Inefficient algorithms
 
-### 可维护性 📝
-- 命名清晰
-- 注释充分
-- 模块化
-- DRY（不重复）
-- 测试覆盖
+### Maintainability 📝
+- Naming clarity
+- Comments adequacy
+- Code organization
+- DRY (don't repeat)
+- Testing coverage
 
-## 输出格式
+## Output Format
 
 ```markdown
 # Code Review Report
@@ -140,3 +120,7 @@ Provide:
 - Comprehensive test coverage
 ...
 ```
+
+## Reference
+
+- [phases/04-testing-validation.md](../../phases/04-testing-validation.md) - Testing methodology

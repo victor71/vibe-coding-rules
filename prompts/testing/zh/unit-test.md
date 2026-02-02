@@ -41,7 +41,7 @@
 ### 例子：测试用户工具函数
 
 ```
-Write unit tests for these utility functions:
+为...编写单元测试 these utility functions:
 
 ```python
 def validate_email(email):
@@ -299,7 +299,7 @@ Requirements:
 ## Mock/Stub 测试
 
 ```
-Write unit tests for [function/class] that depends on external services.
+为...编写单元测试 [function/class] that depends on external services.
 
 ## 要测试的函数
 [粘贴代码]

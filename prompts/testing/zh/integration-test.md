@@ -45,7 +45,7 @@
 - [哪些可以 mock]
 - [哪些需要真实调用]
 
-## Output
+## 输出
 Provide complete integration test code with fixtures and setup.
 ```
 
@@ -54,7 +54,7 @@ Provide complete integration test code with fixtures and setup.
 ### 例子：用户 API 集成测试
 
 ```
-Write integration tests for the user creation API.
+为...编写集成测试 the user creation API.
 
 ## API Definition
 - **Method:** POST
@@ -77,7 +77,7 @@ Write integration tests for the user creation API.
 - **401 Unauthorized:** No authentication
 - **403 Forbidden:** Non-admin trying to create admin user
 
-## Test Requirements
+## 测试要求
 1. Test successful user creation
 2. Test parameter validation (name length, email format)
 3. Test duplicate email
@@ -92,7 +92,7 @@ pytest + httpx + pytest-asyncio
 - Auth middleware can be mocked
 - Use test database for real DB operations
 
-## Output
+## 输出
 Provide complete integration test code.
 ```
 
@@ -272,7 +272,7 @@ async def test_protected_endpoint(authenticated_client):
 ### 数据库 CRUD 操作
 
 ```
-Write integration tests for CRUD operations on [Model].
+为...编写集成测试 CRUD operations on [Model].
 
 ## Model
 [模型定义]
@@ -283,7 +283,7 @@ Write integration tests for CRUD operations on [Model].
 - PUT /api/[resource]/:id - Update
 - DELETE /api/[resource]/:id - Delete
 
-## Test Requirements
+## 测试要求
 1. Create with valid data
 2. Create with invalid data (validation errors)
 3. Read existing resource
@@ -294,14 +294,14 @@ Write integration tests for CRUD operations on [Model].
 8. Delete non-existing resource
 9. Verify database state after each operation
 
-## Output
+## 输出
 Provide complete integration tests.
 ```
 
 ### 外部 API 集成
 
 ```
-Write integration tests for external service integration.
+为...编写集成测试 external service integration.
 
 ## External Service
 [服务名称，例如：Stripe, Twilio, SendGrid]
@@ -309,14 +309,14 @@ Write integration tests for external service integration.
 ## Integration Points
 [哪些功能依赖外部服务]
 
-## Test Requirements
+## 测试要求
 1. Mock external service for unit tests
 2. Test with actual external service (optional, with test credentials)
 3. Test error handling (service down, timeout)
 4. Test rate limiting
 5. Test retry logic
 
-## Output
+## 输出
 Provide test code with mocks and integration tests.
 ```
 
@@ -391,7 +391,7 @@ class TestEmailService:
 ### 消息队列测试
 
 ```
-Write integration tests for message queue handling.
+为...编写集成测试 message queue handling.
 
 ## Queue System
 [RabbitMQ / Redis / Kafka / AWS SQS]
@@ -399,14 +399,14 @@ Write integration tests for message queue handling.
 ## Messages
 [消息类型和格式]
 
-## Test Requirements
+## 测试要求
 1. Test message publishing
 2. Test message consumption
 3. Test error handling (invalid messages, processing failures)
 4. Test retry / dead-letter queue behavior
 5. Test concurrent processing
 
-## Output
+## 输出
 Provide test code with queue fixtures.
 ```
 
@@ -522,7 +522,7 @@ Test Isolation:
 □ No shared state between tests
 □ Each test has its own data
 
-Performance:
+性能：
 □ Add performance benchmarks if needed
 □ Monitor query counts
 □ Check for N+1 queries

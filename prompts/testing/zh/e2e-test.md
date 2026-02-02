@@ -45,9 +45,9 @@
 ### 例子：用户注册流程 E2E 测试
 
 ```
-Write E2E tests for the user registration and login flow.
+为...编写端到端测试 the user registration and login flow.
 
-## User Flow
+## 用户流程
 1. User visits the website
 2. User clicks "Register"
 3. User fills registration form
@@ -57,7 +57,7 @@ Write E2E tests for the user registration and login flow.
 7. User can login with credentials
 8. User sees welcome dashboard
 
-## Test Requirements
+## 测试要求
 1. Use Playwright for browser automation
 2. Test complete flow (don't skip steps)
 3. Verify key elements and text
@@ -67,10 +67,10 @@ Write E2E tests for the user registration and login flow.
 ## 测试框架
 Playwright with JavaScript/TypeScript
 
-## Test Data
+## 测试数据
 Use unique emails for each test run (include timestamp)
 
-## Output
+## 输出
 Provide complete E2E test code.
 ```
 
@@ -220,9 +220,9 @@ test.describe('Login Flow', () => {
 ### 购买流程
 
 ```
-Write E2E tests for the e-commerce checkout flow.
+为...编写端到端测试 the e-commerce checkout flow.
 
-## User Flow
+## 用户流程
 1. User browses products
 2. User adds product to cart
 3. User views cart
@@ -233,23 +233,23 @@ Write E2E tests for the e-commerce checkout flow.
 8. User sees order confirmation
 9. User receives order confirmation email
 
-## Test Requirements
+## 测试要求
 1. Test complete happy path
 2. Test cart persistence (after login)
 3. Test validation (empty cart, invalid address)
 4. Test payment flow
 5. Test order creation in database
 
-## Output
+## 输出
 Provide complete E2E test code.
 ```
 
 ### 社交媒体互动
 
 ```
-Write E2E tests for social media interactions.
+为...编写端到端测试 social media interactions.
 
-## User Flows to Test
+## 用户流程s to Test
 1. User creates a post
 2. User likes a post
 3. User comments on a post
@@ -257,21 +257,21 @@ Write E2E tests for social media interactions.
 5. User edits own post
 6. User deletes own post
 
-## Test Requirements
+## 测试要求
 1. Test as logged-in user
 2. Test as anonymous user (should be blocked)
 3. Test permissions (can't edit others' posts)
 4. Test real-time updates (if applicable)
 5. Verify database state
 
-## Output
+## 输出
 Provide complete E2E test code.
 ```
 
 ### 管理员操作
 
 ```
-Write E2E tests for admin panel operations.
+为...编写端到端测试 admin panel operations.
 
 ## Admin Flows to Test
 1. Admin logs in
@@ -282,14 +282,14 @@ Write E2E tests for admin panel operations.
 6. Admin views analytics dashboard
 7. Admin performs bulk operations
 
-## Test Requirements
+## 测试要求
 1. Test admin authentication
 2. Test authorization (regular users blocked)
 3. Test CRUD operations
 4. Test validation and error handling
 5. Test audit logs (if applicable)
 
-## Output
+## 输出
 Provide complete E2E test code.
 ```
 
@@ -506,35 +506,35 @@ test('visual regression test', async ({ page }) => {
 ## E2E 测试检查清单
 
 ```
-E2E Test Checklist:
+E2E 测试检查清单：
 
-Test Coverage:
+测试覆盖：
 □ Critical user flows tested
 □ Happy path tested
 □ Error paths tested
 □ Edge cases tested
 □ Cross-browser testing (if applicable)
 
-Test Quality:
+测试质量：
 □ Tests are isolated (don't depend on each other)
 □ Tests use unique test data
 □ Tests clean up after themselves
 □ Tests are not flaky
 □ Tests have clear, descriptive names
 
-Best Practices:
+最佳实践：
 □ Use Page Object Model
 □ Use stable selectors (data-testid, aria-label)
 □ Avoid hardcoded waits
 □ Handle async operations properly
 □ Take screenshots on failure
 
-Performance:
+性能：
 □ Tests run in a reasonable time (<5 min)
 □ Parallel execution configured
 □ Unnecessary page loads avoided
 
-Maintenance:
+可维护性：
 □ Tests are easy to understand
 □ Test data is well-organized
 □ Configuration is centralized

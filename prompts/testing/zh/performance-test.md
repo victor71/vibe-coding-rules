@@ -85,7 +85,7 @@ k6
 3. Generate HTML performance report
 4. Compare against targets in summary
 
-## Output
+## 输出
 Provide test script and usage instructions.
 ```
 
@@ -316,7 +316,7 @@ Write a load test for [API].
 - 95th percentile: < Y ms
 - Error rate: < Z%
 
-## Output
+## 输出
 Provide complete load test script.
 ```
 
@@ -336,7 +336,7 @@ Gradually increase load until:
 ## Ramp Up Strategy
 Start at [X users], increase by [Y users] every [Z seconds]
 
-## Output
+## 输出
 Provide stress test script and monitoring plan.
 ```
 
@@ -358,7 +358,7 @@ Write a spike test for [API].
 - No data loss
 - Quick recovery after spike
 
-## Output
+## 输出
 Provide spike test script.
 ```
 
@@ -380,7 +380,7 @@ Write a soak test for [API].
 - Error rate over time
 - CPU usage
 
-## Output
+## 输出
 Provide soak test script and monitoring setup.
 ```
 
@@ -454,7 +454,7 @@ Optimize [component/code] for performance.
 4. Add benchmarks to verify
 5. Maintain correctness with tests
 
-## Output
+## 输出
 Provide optimized code and performance comparison.
 ```
 
