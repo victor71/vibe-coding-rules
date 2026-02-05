@@ -89,15 +89,15 @@
 对于特别大的重构，分成多个阶段：
 
 ```
-Phase 1: Analysis and Planning
+阶段 1：分析和规划
 分析当前代码库并提出重构计划。
 
-Phase 2: Core Infrastructure
+阶段 2：核心基础设施
 在保持旧代码工作的同时构建新的 ORM 层。
 
-Phase 3: Incremental Migration
+阶段 3：增量迁移
 逐个模块迁移，每一步都进行测试。
 
-Phase 4: Cleanup
+阶段 4：清理
 删除旧代码并完成最终工作。
 ```
