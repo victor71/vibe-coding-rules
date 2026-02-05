@@ -41,12 +41,12 @@
 ## 测试框架
 [使用的框架，如 pytest+httpx/Jest+supertest]
 
-## Mock Requirements
+## Mock 要求
 - [哪些可以 mock]
 - [哪些需要真实调用]
 
 ## 输出
-Provide complete integration test code with fixtures and setup.
+提供完整的集成测试代码，包括 fixtures 和设置。
 ```
 
 ## 实际例子
@@ -54,46 +54,46 @@ Provide complete integration test code with fixtures and setup.
 ### 例子：用户 API 集成测试
 
 ```
-为...编写集成测试 the user creation API.
+为...编写集成测试用户创建 API。
 
-## API Definition
-- **Method:** POST
-- **Path:** /api/users
-- **Authentication:** Bearer Token
+## API 定义
+- **方法：** POST
+- **路径：** /api/users
+- **认证：** Bearer Token
 
-## Request Body
+## 请求体
 ```json
 {
-  "name": "string (required, max 50)",
-  "email": "string (required, valid email)",
-  "role": "enum [admin, user] (optional, default: user)"
+  "name": "string (必填，最大 50)",
+  "email": "string (必填，有效邮箱)",
+  "role": "enum [admin, user] (可选，默认：user)"
 }
 ```
 
-## Response
-- **201 Created:** Returns created user
-- **400 Bad Request:** Invalid parameters
-- **409 Conflict:** Email already exists
-- **401 Unauthorized:** No authentication
-- **403 Forbidden:** Non-admin trying to create admin user
+## 响应
+- **201 Created：** 返回创建的用户
+- **400 Bad Request：** 无效参数
+- **409 Conflict：** 邮箱已存在
+- **401 Unauthorized：** 未认证
+- **403 Forbidden：** 非管理员尝试创建管理员用户
 
 ## 测试要求
-1. Test successful user creation
-2. Test parameter validation (name length, email format)
-3. Test duplicate email
-4. Test authorization (only admin can create admin users)
-5. Test authentication (no token returns 401)
-6. Test database verification (record actually written)
+1. 测试成功创建用户
+2. 测试参数验证（名称长度、邮箱格式）
+3. 测试重复邮箱
+4. 测试授权（只有管理员可以创建管理员用户）
+5. 测试认证（无 token 返回 401）
+6. 测试数据库验证（记录实际已写入）
 
 ## 测试框架
 pytest + httpx + pytest-asyncio
 
-## Mock Requirements
-- Auth middleware can be mocked
-- Use test database for real DB operations
+## Mock 要求
+- 可以 mock 认证中间件
+- 使用测试数据库进行真实数据库操作
 
 ## 输出
-Provide complete integration test code.
+提供完整的集成测试代码。
 ```
 
 **示例输出：**

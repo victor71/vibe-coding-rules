@@ -41,7 +41,7 @@
 ### 例子：测试用户工具函数
 
 ```
-为...编写单元测试 these utility functions:
+为...编写单元测试这些工具函数：
 
 ```python
 def validate_email(email):
@@ -72,18 +72,18 @@ def calculate_age(birth_date):
 pytest
 
 ## 要求
-1. Test normal cases (valid email, adult age)
-2. Test edge cases (empty, boundary dates)
-3. Test error cases (invalid formats, None)
-4. Use descriptive test names
-5. Use given-when-then pattern
-6. At least 5 test cases per function
+1. 测试正常情况（有效邮箱、成年人年龄）
+2. 测试边缘情况（空值、边界日期）
+3. 测试错误情况（无效格式、None）
+4. 使用描述性测试名称
+5. 使用 given-when-then 模式
+6. 每个函数至少 5 个测试用例
 
 ## 输出格式
-Provide the complete test file with:
-- All test cases
-- Fixtures if needed
-- Clear comments explaining what each test validates
+提供完整的测试文件，包括：
+- 所有测试用例
+- 如需要则提供 fixtures
+- 清晰的注释说明每个测试验证的内容
 ```
 
 **示例输出：**
@@ -95,10 +95,10 @@ from datetime import date, timedelta
 from user_utils import validate_email, calculate_age
 
 class TestValidateEmail:
-    """Test email validation function."""
+    """测试邮箱验证函数。"""
 
     def test_valid_email_returns_true(self):
-        """Valid email should return True."""
+        """有效邮箱应返回 True。"""
         # Given
         email = "user@example.com"
 
@@ -109,7 +109,7 @@ class TestValidateEmail:
         assert result is True
 
     def test_email_without_at_sign_returns_false(self):
-        """Email without @ should return False."""
+        """没有 @ 的邮箱应返回 False。"""
         # Given
         email = "userexample.com"
 
@@ -120,23 +120,23 @@ class TestValidateEmail:
         assert result is False
 
     def test_empty_email_returns_false(self):
-        """Empty email should return False."""
+        """空邮箱应返回 False。"""
         assert validate_email("") is False
 
     def test_none_email_returns_false(self):
-        """None email should return False."""
+        """None 邮箱应返回 False。"""
         assert validate_email(None) is False
 
     def test_email_with_special_chars_valid(self):
-        """Email with dots and plus should be valid."""
+        """带点和加号的邮箱应该是有效的。"""
         assert validate_email("user.name+tag@example.com") is True
 
 
 class TestCalculateAge:
-    """Test age calculation function."""
+    """测试年龄计算函数。"""
 
     def test_age_calculation_for_adult(self):
-        """Calculate age for adult."""
+        """计算成年人的年龄。"""
         # Given
         birth_date = date.today() - timedelta(days=365 * 30)
 
@@ -147,7 +147,7 @@ class TestCalculateAge:
         assert age == 30
 
     def test_age_calculation_for_child(self):
-        """Calculate age for child."""
+        """计算儿童的年龄。"""
         # Given
         birth_date = date.today() - timedelta(days=365 * 5)
 
@@ -158,7 +158,7 @@ class TestCalculateAge:
         assert age == 5
 
     def test_age_calculation_for_today(self):
-        """Age should be 0 for today's birth."""
+        """今天出生的年龄应为 0。"""
         # Given
         birth_date = date.today()
 
@@ -169,8 +169,8 @@ class TestCalculateAge:
         assert age == 0
 
     def test_age_calculated_before_birthday_this_year(self):
-        """Should be one year less if birthday hasn't occurred yet."""
-        # Given - birth date 30 years ago, but birthday is tomorrow
+        """如果生日还未发生，应少一年。"""
+        # Given - 30 年前出生，但生日是明天
         today = date(2024, 6, 15)
         birth_date = date(1994, 6, 16)
 
@@ -187,16 +187,16 @@ class TestCalculateAge:
 
 ### 1. 测试命名要清晰
 
-**❌ Bad:**
+**❌ 不好：**
 ```python
 def test_1():
     assert add(2, 3) == 5
 ```
 
-**✅ Good:**
+**✅ 好：**
 ```python
 def test_add_two_positive_numbers_returns_sum(self):
-    """Adding two positive numbers should return their sum."""
+    """添加两个正数应返回它们的和。"""
     assert add(2, 3) == 5
 ```
 
@@ -204,20 +204,20 @@ def test_add_two_positive_numbers_returns_sum(self):
 
 ```python
 def test_calculate_discount_for_vip_user(self):
-    # Arrange (准备)
+    # Arrange（准备）
     user = User(type="VIP")
     product = Product(price=100)
 
-    # Act (执行)
+    # Act（执行）
     discounted_price = calculate_discount(user, product)
 
-    # Assert (断言)
-    assert discounted_price == 80  # VIP 20% off
+    # Assert（断言）
+    assert discounted_price == 80  # VIP 20% 折扣
 ```
 
 ### 3. 测试一个行为
 
-**❌ Bad:** 一个测试测多个行为
+**❌ 不好：** 一个测试测多个行为
 ```python
 def test_user_operations(self):
     user = User("john")
@@ -228,7 +228,7 @@ def test_user_operations(self):
     assert user.age == 31
 ```
 
-**✅ Good:** 每个行为一个测试
+**✅ 好：** 每个行为一个测试
 ```python
 def test_user_name_initialization(self):
     user = User("john")
@@ -248,14 +248,14 @@ def test_user_age_increments_on_birthday(self):
 
 ### 4. 避免测试实现细节
 
-**❌ Bad:**
+**❌ 不好：**
 ```python
 def test_user_name_storage(self):
     user = User("john")
     assert user._name == "john"  # 测试私有属性
 ```
 
-**✅ Good:**
+**✅ 好：**
 ```python
 def test_user_name_retrieval(self):
     user = User("john")
@@ -265,41 +265,41 @@ def test_user_name_retrieval(self):
 ## TDD（测试驱动开发）
 
 ```
-Implement [feature] using TDD.
+使用 TDD 实现 [功能]。
 
-Requirements:
+需求：
 [功能需求]
 
 ## TDD 流程
-1. **Red**: Write a failing test
-2. **Green**: Write simplest code to make test pass
-3. **Refactor**: Improve code while keeping tests passing
+1. **Red**：编写一个失败的测试
+2. **Green**：编写最简单的代码使测试通过
+3. **Refactor**：改进代码同时保持测试通过
 
 ## 要求
-1. Follow TDD cycle step by step
-2. Write only one test per cycle
-3. Show test code and implementation code for each step
-4. Provide complete code at the end
+1. 逐步遵循 TDD 周期
+2. 每个周期只写一个测试
+3. 显示每个步骤的测试代码和实现代码
+4. 最后提供完整代码
 
 ## 输出格式
-### Cycle 1: Test Case X
-**Test Code:**
+### 周期 1：测试用例 X
+**测试代码：**
 ```python
 ```
 
-**Implementation Code:**
+**实现代码：**
 ```python
 ```
 
-**Status:** ✅ Pass / ❌ Fail
+**状态：** ✅ 通过 / ❌ 失败
 
-### Cycle 2: ...
+### 周期 2：...
 ```
 
 ## Mock/Stub 测试
 
 ```
-为...编写单元测试 [function/class] that depends on external services.
+为...编写单元测试 [函数/类]，该函数/类依赖外部服务。
 
 ## 要测试的函数
 [粘贴代码]
@@ -309,16 +309,16 @@ Requirements:
 - [外部服务 2]
 
 ## 要求
-1. Mock all external dependencies
-2. Test that dependencies are called correctly
-3. Test error handling when dependencies fail
-4. Use pytest-mock/unittest.mock
+1. Mock 所有外部依赖
+2. 测试依赖是否被正确调用
+3. 测试依赖失败时的错误处理
+4. 使用 pytest-mock/unittest.mock
 
 ## 输出格式
-Provide test file with:
-- Proper mock setup
-- Verification of mock calls
-- Tests for both success and failure cases
+提供测试文件，包括：
+- 正确的 mock 设置
+- mock 调用的验证
+- 成功和失败情况的测试
 ```
 
 **示例：**
@@ -329,11 +329,11 @@ from unittest.mock import Mock, patch
 import pytest
 
 class TestPaymentService:
-    """Test payment service with mocked external API."""
+    """使用模拟外部 API 测试支付服务。"""
 
     @patch('services.payment_gateway.charge')
     def test_successful_payment(self, mock_charge):
-        """Should return success when payment gateway returns success."""
+        """当支付网关返回成功时应返回成功。"""
         # Arrange
         mock_charge.return_value = {"status": "success", "transaction_id": "12345"}
         service = PaymentService()
@@ -348,7 +348,7 @@ class TestPaymentService:
 
     @patch('services.payment_gateway.charge')
     def test_failed_payment(self, mock_charge):
-        """Should handle payment gateway failures."""
+        """应处理支付网关失败。"""
         # Arrange
         mock_charge.return_value = {"status": "failed", "error": "Insufficient funds"}
         service = PaymentService()
@@ -362,7 +362,7 @@ class TestPaymentService:
 
     @patch('services.payment_gateway.charge')
     def test_payment_gateway_timeout(self, mock_charge):
-        """Should retry on timeout."""
+        """应在超时时重试。"""
         # Arrange
         mock_charge.side_effect = [TimeoutError("Gateway timeout"), {"status": "success"}]
         service = PaymentService()
@@ -378,29 +378,29 @@ class TestPaymentService:
 ## 测试覆盖率分析
 
 ```
-Analyze the test coverage for [module/function].
+分析 [模块/函数] 的测试覆盖率。
 
 ## 覆盖率报告
 [粘贴覆盖率报告]
 
 ## 要求
-1. Identify untested critical code paths
-2. Identify areas needing additional tests
-3. Suggest specific test cases
+1. 识别未测试的关键代码路径
+2. 识别需要额外测试的区域
+3. 建议具体的测试用例
 
 ## 输出格式
 ### 覆盖率汇总
-- Overall Coverage: X%
-- Line Coverage: X%
-- Branch Coverage: X%
+- 整体覆盖率：X%
+- 行覆盖率：X%
+- 分支覆盖率：X%
 
 ### 未测试的关键代码
-1. [File:Line]
-   - Functionality: [description]
-   - Risk: [why this needs testing]
-   - Suggestion: [how to test]
+1. [文件：行号]
+   - 功能：[描述]
+   - 风险：[为什么需要测试]
+   - 建议：[如何测试]
 
 ### 测试建议
-1. [Suggestion 1]
-2. [Suggestion 2]
+1. [建议 1]
+2. [建议 2]
 ```

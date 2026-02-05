@@ -45,33 +45,33 @@
 ### 例子：用户注册流程 E2E 测试
 
 ```
-为...编写端到端测试 the user registration and login flow.
+为...编写端到端测试用户注册和登录流程。
 
 ## 用户流程
-1. User visits the website
-2. User clicks "Register"
-3. User fills registration form
-4. User submits form
-5. User receives confirmation email
-6. User clicks email confirmation link
-7. User can login with credentials
-8. User sees welcome dashboard
+1. 用户访问网站
+2. 用户点击"注册"
+3. 用户填写注册表单
+4. 用户提交表单
+5. 用户收到确认邮件
+6. 用户点击邮件确认链接
+7. 用户可以使用凭据登录
+8. 用户看到欢迎仪表板
 
 ## 测试要求
-1. Use Playwright for browser automation
-2. Test complete flow (don't skip steps)
-3. Verify key elements and text
-4. Handle email verification (mock or real)
-5. Clean up test data after test
+1. 使用 Playwright 进行浏览器自动化
+2. 测试完整流程（不跳过步骤）
+3. 验证关键元素和文本
+4. 处理邮件验证（模拟或真实）
+5. 清理测试数据
 
 ## 测试框架
 Playwright with JavaScript/TypeScript
 
 ## 测试数据
-Use unique emails for each test run (include timestamp)
+为每次测试运行使用唯一的电子邮件（包含时间戳）
 
 ## 输出
-Provide complete E2E test code.
+提供完整的 E2E 测试代码。
 ```
 
 **示例输出：**
@@ -80,22 +80,22 @@ Provide complete E2E test code.
 // e2e/user-registration.spec.js
 const { test, expect } = require('@playwright/test');
 
-test.describe('User Registration Flow', () => {
+test.describe('用户注册流程', () => {
   test.beforeEach(async ({ page }) => {
-    // Setup: navigate to base URL
+    // 设置：导航到基础 URL
     await page.goto('https://example.com');
   });
 
-  test('complete user registration from signup to dashboard', async ({ page }) => {
-    // Step 1: Navigate to website
-    await expect(page).toHaveTitle(/Welcome/);
+  test('从注册到仪表板的完整用户注册流程', async ({ page }) => {
+    // 步骤 1：导航到网站
+    await expect(page).toHaveTitle(/欢迎/);
 
-    // Step 2: Click register button
+    // 步骤 2：点击注册按钮
     await page.click('button:has-text("Register")');
     await expect(page).toHaveURL(/.*\/register/);
-    await expect(page.locator('h1')).toContainText('Create Account');
+    await expect(page.locator('h1')).toContainText('创建账户');
 
-    // Step 3: Fill registration form
+    // 步骤 3：填写注册表单
     const timestamp = Date.now();
     const email = `testuser${timestamp}@example.com`;
 
@@ -104,37 +104,37 @@ test.describe('User Registration Flow', () => {
     await page.fill('input[name="password"]', 'SecurePass123!');
     await page.fill('input[name="confirmPassword"]', 'SecurePass123!');
 
-    // Step 4: Submit form
+    // 步骤 4：提交表单
     await page.click('button[type="submit"]');
 
-    // Step 5: Verify success message
-    await expect(page.locator('.success-message')).toContainText('Registration successful');
+    // 步骤 5：验证成功消息
+    await expect(page.locator('.success-message')).toContainText('注册成功');
     await expect(page.locator('.success-message')).toBeVisible();
 
-    // Step 6: Check email (in real scenario, verify email was sent)
-    // For E2E test, we might mock this or use test email service
-    await expect(page.locator('.email-confirmation')).toContainText('Check your email');
+    // 步骤 6：检查邮件（在真实场景中，验证邮件已发送）
+    // 对于 E2E 测试，我们可以模拟这个或使用测试邮件服务
+    await expect(page.locator('.email-confirmation')).toContainText('检查您的邮件');
 
-    // Step 7: Simulate email confirmation (click confirmation link)
-    // In real scenario, parse email and click link
+    // 步骤 7：模拟邮件确认（点击确认链接）
+    // 在真实场景中，解析邮件并点击链接
     await page.goto(`https://example.com/verify-email?token=${timestamp}`);
 
-    // Step 8: Navigate to login
+    // 步骤 8：导航到登录
     await page.click('button:has-text("Login")');
     await expect(page).toHaveURL(/.*\/login/);
 
-    // Step 9: Login with new credentials
+    // 步骤 9：使用新凭据登录
     await page.fill('input[name="email"]', email);
     await page.fill('input[name="password"]', 'SecurePass123!');
     await page.click('button[type="submit"]');
 
-    // Step 10: Verify logged in
+    // 步骤 10：验证已登录
     await expect(page).toHaveURL(/.*\/dashboard/);
     await expect(page.locator('.user-name')).toContainText('John Doe');
     await expect(page.locator('.welcome-banner')).toBeVisible();
   });
 
-  test('registration with invalid email shows validation error', async ({ page }) => {
+  test('无效邮箱显示验证错误', async ({ page }) => {
     await page.click('button:has-text("Register")');
 
     await page.fill('input[name="name"]', 'John Doe');
@@ -144,12 +144,12 @@ test.describe('User Registration Flow', () => {
 
     await page.click('button[type="submit"]');
 
-    // Verify error message
-    await expect(page.locator('.error-message')).toContainText('Invalid email format');
-    await expect(page).toHaveURL(/.*\/register/); // Stay on same page
+    // 验证错误消息
+    await expect(page.locator('.error-message')).toContainText('无效的邮箱格式');
+    await expect(page).toHaveURL(/.*\/register/); // 保持在同一页面
   });
 
-  test('password mismatch shows error', async ({ page }) => {
+  test('密码不匹配显示错误', async ({ page }) => {
     await page.click('button:has-text("Register")');
 
     await page.fill('input[name="name"]', 'John Doe');
@@ -159,25 +159,25 @@ test.describe('User Registration Flow', () => {
 
     await page.click('button[type="submit"]');
 
-    await expect(page.locator('.error-message')).toContainText('Passwords do not match');
+    await expect(page.locator('.error-message')).toContainText('密码不匹配');
   });
 
-  test('short password shows validation error', async ({ page }) => {
+  test('短密码显示验证错误', async ({ page }) => {
     await page.click('button:has-text("Register")');
 
     await page.fill('input[name="name"]', 'John Doe');
     await page.fill('input[name="email"]', 'john@example.com');
-    await page.fill('input[name="password"]', 'short'); // Too short
+    await page.fill('input[name="password"]', 'short'); // 太短
     await page.fill('input[name="confirmPassword"]', 'short');
 
     await page.click('button[type="submit"]');
 
-    await expect(page.locator('.error-message')).toContainText('Password must be at least 8 characters');
+    await expect(page.locator('.error-message')).toContainText('密码必须至少 8 个字符');
   });
 });
 
-test.describe('Login Flow', () => {
-  test('successful login redirects to dashboard', async ({ page }) => {
+test.describe('登录流程', () => {
+  test('成功登录重定向到仪表板', async ({ page }) => {
     await page.goto('https://example.com/login');
 
     await page.fill('input[name="email"]', 'existing-user@example.com');
@@ -185,29 +185,29 @@ test.describe('Login Flow', () => {
     await page.click('button[type="submit"]');
 
     await expect(page).toHaveURL(/.*\/dashboard/);
-    await expect(page.locator('.user-greeting')).toContainText('Hello, User');
+    await expect(page.locator('.user-greeting')).toContainText('你好，用户');
   });
 
-  test('invalid credentials shows error', async ({ page }) => {
+  test('无效凭据显示错误', async ({ page }) => {
     await page.goto('https://example.com/login');
 
     await page.fill('input[name="email"]', 'nonexistent@example.com');
     await page.fill('input[name="password"]', 'WrongPassword');
     await page.click('button[type="submit"]');
 
-    await expect(page.locator('.error-message')).toContainText('Invalid email or password');
+    await expect(page.locator('.error-message')).toContainText('无效的邮箱或密码');
     await expect(page).toHaveURL(/.*\/login/);
   });
 
-  test('logout functionality', async ({ page }) => {
-    // First login
+  test('登出功能', async ({ page }) => {
+    // 首先登录
     await page.goto('https://example.com/login');
     await page.fill('input[name="email"]', 'existing-user@example.com');
     await page.fill('input[name="password"]', 'CorrectPassword123!');
     await page.click('button[type="submit"]');
     await expect(page).toHaveURL(/.*\/dashboard/);
 
-    // Then logout
+    // 然后登出
     await page.click('button:has-text("Logout")');
     await expect(page).toHaveURL(/.*\/login/);
     await expect(page.locator('.login-form')).toBeVisible();
@@ -220,82 +220,82 @@ test.describe('Login Flow', () => {
 ### 购买流程
 
 ```
-为...编写端到端测试 the e-commerce checkout flow.
+为...编写端到端测试电商结账流程。
 
 ## 用户流程
-1. User browses products
-2. User adds product to cart
-3. User views cart
-4. User proceeds to checkout
-5. User enters shipping address
-6. User selects payment method
-7. User confirms order
-8. User sees order confirmation
-9. User receives order confirmation email
+1. 用户浏览商品
+2. 用户将商品添加到购物车
+3. 用户查看购物车
+4. 用户进行结账
+5. 用户输入收货地址
+6. 用户选择支付方式
+7. 用户确认订单
+8. 用户看到订单确认
+9. 用户收到订单确认邮件
 
 ## 测试要求
-1. Test complete happy path
-2. Test cart persistence (after login)
-3. Test validation (empty cart, invalid address)
-4. Test payment flow
-5. Test order creation in database
+1. 测试完整的 Happy Path
+2. 测试购物车持久性（登录后）
+3. 测试验证（空购物车、无效地址）
+4. 测试支付流程
+5. 测试数据库中的订单创建
 
 ## 输出
-Provide complete E2E test code.
+提供完整的 E2E 测试代码。
 ```
 
 ### 社交媒体互动
 
 ```
-为...编写端到端测试 social media interactions.
+为...编写端到端测试社交媒体互动。
 
 ## 用户流程s to Test
-1. User creates a post
-2. User likes a post
-3. User comments on a post
-4. User shares a post
-5. User edits own post
-6. User deletes own post
+1. 用户创建帖子
+2. 用户点赞帖子
+3. 用户评论帖子
+4. 用户分享帖子
+5. 用户编辑自己的帖子
+6. 用户删除自己的帖子
 
 ## 测试要求
-1. Test as logged-in user
-2. Test as anonymous user (should be blocked)
-3. Test permissions (can't edit others' posts)
-4. Test real-time updates (if applicable)
-5. Verify database state
+1. 以登录用户身份测试
+2. 以匿名用户身份测试（应该被阻止）
+3. 测试权限（无法编辑他人的帖子）
+4. 测试实时更新（如适用）
+5. 验证数据库状态
 
 ## 输出
-Provide complete E2E test code.
+提供完整的 E2E 测试代码。
 ```
 
 ### 管理员操作
 
 ```
-为...编写端到端测试 admin panel operations.
+为...编写端到端测试管理面板操作。
 
-## Admin Flows to Test
-1. Admin logs in
-2. Admin views user list
-3. Admin creates new user
-4. Admin edits user permissions
-5. Admin deletes user
-6. Admin views analytics dashboard
-7. Admin performs bulk operations
+## 管理员流程测试
+1. 管理员登录
+2. 管理员查看用户列表
+3. 管理员创建新用户
+4. 管理员编辑用户权限
+5. 管理员删除用户
+6. 管理员查看分析仪表板
+7. 管理员执行批量操作
 
 ## 测试要求
-1. Test admin authentication
-2. Test authorization (regular users blocked)
-3. Test CRUD operations
-4. Test validation and error handling
-5. Test audit logs (if applicable)
+1. 测试管理员认证
+2. 测试授权（普通用户被阻止）
+3. 测试 CRUD 操作
+4. 测试验证和错误处理
+5. 测试审计日志（如适用）
 
 ## 输出
-Provide complete E2E test code.
+提供完整的 E2E 测试代码。
 ```
 
 ## E2E 测试最佳实践
 
-### 1. 使用 Page Object Model
+### 1. 使用页面对象模型（Page Object Model）
 
 ```javascript
 // pages/LoginPage.js
@@ -323,7 +323,7 @@ class LoginPage {
 const { test } = require('@playwright/test');
 const LoginPage = require('../pages/LoginPage');
 
-test('login with valid credentials', async ({ page }) => {
+test('使用有效凭据登录', async ({ page }) => {
   const loginPage = new LoginPage(page);
   await loginPage.goto();
   await loginPage.login('user@example.com', 'password123');
@@ -335,34 +335,34 @@ test('login with valid credentials', async ({ page }) => {
 ### 2. 处理异步操作
 
 ```javascript
-test('handle loading states', async ({ page }) => {
+test('处理加载状态', async ({ page }) => {
   await page.goto('/products');
 
-  // Wait for loading to finish
+  // 等待加载完成
   await page.waitForSelector('.product-list', { state: 'visible' });
   await expect(page.locator('.loading-spinner')).not.toBeVisible();
 
-  // Click a button that triggers async operation
+  // 点击触发异步操作的按钮
   await page.click('button:has-text("Load More")');
 
-  // Wait for new content to load
+  // 等待新内容加载
   await page.waitForResponse('**/api/products?page=2');
-  await expect(page.locator('.product-item')).toHaveCount(20); // 10 + 10 more
+  await expect(page.locator('.product-item')).toHaveCount(20); // 10 + 10 更多
 });
 ```
 
 ### 3. 测试数据清理
 
 ```javascript
-test.describe('User Management', () => {
+test.describe('用户管理', () => {
   let testUserEmail;
 
   test.beforeEach(async ({ page }) => {
     testUserEmail = `test-${Date.now()}@example.com`;
   });
 
-  test('create user', async ({ page }) => {
-    // Create user
+  test('创建用户', async ({ page }) => {
+    // 创建用户
     await page.goto('/users/create');
     await page.fill('input[name="email"]', testUserEmail);
     await page.click('button[type="submit"]');
@@ -371,7 +371,7 @@ test.describe('User Management', () => {
   });
 
   test.afterEach(async ({ page, request }) => {
-    // Clean up test data via API
+    // 通过 API 清理测试数据
     await request.delete(`/api/users?email=${testUserEmail}`);
   });
 });
@@ -380,11 +380,11 @@ test.describe('User Management', () => {
 ### 4. 处理多标签页/窗口
 
 ```javascript
-test('handle multiple tabs', async ({ context }) => {
+test('处理多个标签页', async ({ context }) => {
   const page1 = await context.newPage();
   await page1.goto('/');
 
-  // Open link in new tab
+  // 在新标签页中打开链接
   const [newPage] = await Promise.all([
     context.waitForEvent('page'),
     page1.click('a[target="_blank"]')
@@ -393,7 +393,7 @@ test('handle multiple tabs', async ({ context }) => {
   await newPage.waitForLoadState();
   await expect(newPage).toHaveURL(/external-site/);
 
-  // Switch back to original page
+  // 切换回原始页面
   await page1.bringToFront();
   await expect(page1).toHaveURL(/^\/$/);
 });
@@ -402,22 +402,22 @@ test('handle multiple tabs', async ({ context }) => {
 ### 5. 截图和录屏
 
 ```javascript
-test('with screenshot on failure', async ({ page }) => {
+test('失败时截图', async ({ page }) => {
   try {
     await page.goto('/dashboard');
     await page.click('button:has-text("Generate Report")');
 
-    // Wait for report generation
+    // 等待报告生成
     await page.waitForSelector('.report-content', { timeout: 5000 });
   } catch (error) {
-    // Take screenshot on failure
+    // 失败时截图
     await page.screenshot({ path: `screenshots/failure-${Date.now()}.png` });
     throw error;
   }
 });
 
-// Or use test.fail() to take screenshot automatically
-test.fail('known issue to be fixed', async ({ page }) => {
+// 或使用 test.fail() 自动截图
+test.fail('待修复的已知问题', async ({ page }) => {
   await page.goto('/feature-with-bug');
   await expect(page.locator('.buggy-element')).toBeVisible();
 });
@@ -440,19 +440,19 @@ test.fail('known issue to be fixed', async ({ page }) => {
 ### 避免脆弱测试
 
 ```javascript
-// ❌ Bad: Hardcoded waits
+// ❌ 不好：硬编码等待
 await page.waitForTimeout(5000);
 
-// ✅ Good: Smart waits
+// ✅ 好：智能等待
 await page.waitForSelector('.result', { state: 'visible' });
 await page.waitForResponse('**/api/data');
 
-// ❌ Bad: Flaky selectors based on DOM structure
+// ❌ 不好：基于 DOM 结构的不稳定选择器
 await page.click('div > div:nth-child(2) > button');
 
-// ✅ Good: Stable selectors
+// ✅ 好：稳定的选择器
 await page.click('button[data-testid="submit-button"]');
-await page.getByRole('button', { name: 'Submit' }).click();
+await page.getByRole('button', { name: '提交' }).click();
 ```
 
 ### 重试策略
@@ -461,7 +461,7 @@ await page.getByRole('button', { name: 'Submit' }).click();
 // playwright.config.js
 module.exports = {
   use: {
-    retries: 2, // Retry failed tests 2 times
+    retries: 2, // 重试失败的测试 2 次
   },
   projects: [
     {
@@ -475,14 +475,14 @@ module.exports = {
 ## 可访问性测试
 
 ```javascript
-test('should be accessible', async ({ page }) => {
+test('应该可访问', async ({ page }) => {
   await page.goto('/');
 
-  // Check for proper ARIA labels
-  await expect(page.getByRole('button', { name: 'Submit' })).toBeVisible();
+  // 检查正确的 ARIA 标签
+  await expect(page.getByRole('button', { name: '提交' })).toBeVisible();
   await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
 
-  // Check alt text on images
+  // 检查图片的 alt 文本
   const images = await page.locator('img').all();
   for (const img of images) {
     await expect(img).toHaveAttribute('alt');
@@ -493,12 +493,12 @@ test('should be accessible', async ({ page }) => {
 ## 视觉回归测试
 
 ```javascript
-test('visual regression test', async ({ page }) => {
+test('视觉回归测试', async ({ page }) => {
   await page.goto('/homepage');
 
-  // Take screenshot and compare with baseline
+  // 截图并与基准进行比较
   await expect(page).toHaveScreenshot('homepage.png', {
-    maxDiffPixels: 100, // Allow small differences
+    maxDiffPixels: 100, // 允许小的差异
   });
 });
 ```
@@ -509,34 +509,34 @@ test('visual regression test', async ({ page }) => {
 E2E 测试检查清单：
 
 测试覆盖：
-□ Critical user flows tested
-□ Happy path tested
-□ Error paths tested
-□ Edge cases tested
-□ Cross-browser testing (if applicable)
+□ 关键用户流程已测试
+□ Happy Path 已测试
+□ 错误路径已测试
+□ 边缘情况已测试
+□ 跨浏览器测试（如适用）
 
 测试质量：
-□ Tests are isolated (don't depend on each other)
-□ Tests use unique test data
-□ Tests clean up after themselves
-□ Tests are not flaky
-□ Tests have clear, descriptive names
+□ 测试是隔离的（互不依赖）
+□ 测试使用唯一的测试数据
+□ 测试完成后清理
+□ 测试不稳定
+□ 测试有清晰的描述性名称
 
 最佳实践：
-□ Use Page Object Model
-□ Use stable selectors (data-testid, aria-label)
-□ Avoid hardcoded waits
-□ Handle async operations properly
-□ Take screenshots on failure
+□ 使用页面对象模型
+□ 使用稳定的选择器（data-testid, aria-label）
+□ 避免硬编码等待
+□ 正确处理异步操作
+□ 失败时截图
 
 性能：
-□ Tests run in a reasonable time (<5 min)
-□ Parallel execution configured
-□ Unnecessary page loads avoided
+□ 测试在合理时间内运行（<5 分钟）
+□ 配置了并行执行
+□ 避免不必要的页面加载
 
 可维护性：
-□ Tests are easy to understand
-□ Test data is well-organized
-□ Configuration is centralized
-□ Documentation is up to date
+□ 测试易于理解
+□ 测试数据组织良好
+□ 配置集中化
+□ 文档是最新的
 ```
