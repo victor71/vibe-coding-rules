@@ -21,35 +21,35 @@ vibe-coding-rules/
 │
 ├── prompts/                     # Prompt 模板（按开发阶段分类，中英文对照）
 │   ├── analysis/               # 分析阶段
-│   │   ├── en/                      # English templates
+│   │   ├── en/                      
 │   │   │   ├── requirement-clarification.md
 │   │   │   ├── solution-design.md
 │   │   │   └── architecture-review.md
-│   │   └── cn/                      # Chinese templates
+│   │   └── cn/                      
 │   │       ├── requirement-clarification.md
 │   │       ├── solution-design.md
 │   │       └── architecture-review.md
 │   │
 │   ├── development/            # 开发阶段
-│   │   ├── en/                      # English templates
+│   │   ├── en/                      
 │   │   │   ├── quick-fix.md
 │   │   │   ├── complex-refactor.md
 │   │   │   ├── new-feature.md
 │   │   │   └── optimization.md
-│   │   └── zh/                      # Chinese templates
+│   │   └── zh/                      
 │   │       ├── quick-fix.md
 │   │       ├── complex-refactor.md
 │   │       ├── new-feature.md
 │   │       └── optimization.md
 │   │
 │   └── testing/                # 测试阶段
-│       ├── en/                      # English templates
+│       ├── en/                      
 │       │   ├── unit-test.md
 │       │   ├── integration-test.md
 │       │   ├── e2e-test.md
 │       │   ├── performance-test.md
 │       │   └── code-review.md
-│       └── zh/                      # Chinese templates
+│       └── zh/                      
 │           ├── unit-test.md
 │           ├── integration-test.md
 │           ├── e2e-test.md
@@ -121,14 +121,14 @@ vibe-coding-rules/
 ```
 prompts/
 ├── analysis/
-│   ├── en/                    # English templates
-│   └── [*.md]              # Chinese templates (root level)
+│   ├── en/                    
+│   └── cn/             
 ├── development/
-│   ├── en/                    # English templates
-│   └── zh/                    # Chinese templates
+│   ├── en/                    
+│   └── zh/                    
 └── testing/
-    ├── en/                    # English templates
-    └── zh/                    # Chinese templates
+    ├── en/                    
+    └── zh/                    
 ```
 
 ### 使用建议
