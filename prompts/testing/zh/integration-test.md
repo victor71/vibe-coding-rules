@@ -1,4 +1,4 @@
-# Integration Test Prompt Template
+# 集成测试 Prompt 模板
 
 集成测试的 prompt 模板。
 
@@ -23,12 +23,12 @@
 [请求体或参数定义]
 
 ## 响应
-- **200 OK：** [成功响应]
-- **400 Bad Request：** [参数错误]
-- **401 Unauthorized：** [未认证]
-- **403 Forbidden：** [权限不足]
-- **404 Not Found：** [资源不存在]
-- **500 Internal Server Error：** [服务器错误]
+- **200：** [成功响应]
+- **400：** [参数错误]
+- **401：** [未认证]
+- **403：** [权限不足]
+- **404：** [资源不存在]
+- **500：** [服务器错误]
 
 ## 测试要求
 1. 测试正常成功情况
@@ -54,7 +54,7 @@
 ### 例子：用户 API 集成测试
 
 ```
-为...编写集成测试用户创建 API。
+为用户创建 API 编写集成测试。
 
 ## API 定义
 - **方法：** POST
@@ -71,11 +71,11 @@
 ```
 
 ## 响应
-- **201 Created：** 返回创建的用户
-- **400 Bad Request：** 无效参数
-- **409 Conflict：** 邮箱已存在
-- **401 Unauthorized：** 未认证
-- **403 Forbidden：** 非管理员尝试创建管理员用户
+- **201：** 返回创建的用户
+- **400：** 无效参数
+- **409：** 邮箱已存在
+- **401：** 未认证
+- **403：** 非管理员尝试创建管理员用户
 
 ## 测试要求
 1. 测试成功创建用户
@@ -106,8 +106,8 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 @pytest.mark.asyncio
 async def test_create_user_success(async_client: AsyncClient, db_session: AsyncSession):
-    """Creating a valid user should return 201."""
-    # Arrange
+    """创建有效用户应返回 201。"""
+    # 准备
     payload = {
         "name": "John Doe",
         "email": "john@example.com",
@@ -115,19 +115,19 @@ async def test_create_user_success(async_client: AsyncClient, db_session: AsyncS
     }
     headers = {"Authorization": "Bearer valid_admin_token"}
 
-    # Act
+    # 执行
     response = await async_client.post("/api/users", json=payload, headers=headers)
 
-    # Assert - HTTP response
+    # 断言 - HTTP 响应
     assert response.status_code == 201
     data = response.json()
     assert data["id"] is not None
     assert data["name"] == "John Doe"
     assert data["email"] == "john@example.com"
     assert data["role"] == "user"
-    assert "password" not in data  # Don't return password
+    assert "password" not in data  # 不返回密码
 
-    # Assert - Database verification
+    # 断言 - 数据库验证
     from models import User
     user = await User.get_by_id(db_session, data["id"])
     assert user is not None
@@ -135,8 +135,8 @@ async def test_create_user_success(async_client: AsyncClient, db_session: AsyncS
 
 @pytest.mark.asyncio
 async def test_create_user_invalid_email(async_client: AsyncClient):
-    """Creating user with invalid email should return 400."""
-    # Arrange
+    """使用无效邮箱创建用户应返回 400。"""
+    # 准备
     payload = {
         "name": "John Doe",
         "email": "invalid-email",
@@ -144,17 +144,17 @@ async def test_create_user_invalid_email(async_client: AsyncClient):
     }
     headers = {"Authorization": "Bearer valid_admin_token"}
 
-    # Act
+    # 执行
     response = await async_client.post("/api/users", json=payload, headers=headers)
 
-    # Assert
+    # 断言
     assert response.status_code == 400
     assert "email" in response.json()["errors"]
 
 @pytest.mark.asyncio
 async def test_create_user_duplicate_email(async_client: AsyncClient):
-    """Creating user with duplicate email should return 409."""
-    # Arrange - Create first user
+    """使用重复邮箱创建用户应返回 409。"""
+    # 准备 - 创建第一个用户
     payload = {
         "name": "John Doe",
         "email": "john@example.com",
@@ -163,43 +163,43 @@ async def test_create_user_duplicate_email(async_client: AsyncClient):
     headers = {"Authorization": "Bearer valid_admin_token"}
     await async_client.post("/api/users", json=payload, headers=headers)
 
-    # Act - Try to create duplicate
+    # 执行 - 尝试创建重复
     response = await async_client.post("/api/users", json=payload, headers=headers)
 
-    # Assert
+    # 断言
     assert response.status_code == 409
     assert "email already exists" in response.json()["message"].lower()
 
 @pytest.mark.asyncio
 async def test_create_user_without_auth(async_client: AsyncClient):
-    """Creating user without authentication should return 401."""
-    # Arrange
+    """未认证创建用户应返回 401。"""
+    # 准备
     payload = {
         "name": "John Doe",
         "email": "john@example.com"
     }
 
-    # Act
+    # 执行
     response = await async_client.post("/api/users", json=payload)
 
-    # Assert
+    # 断言
     assert response.status_code == 401
 
 @pytest.mark.asyncio
 async def test_create_admin_user_as_regular_user(async_client: AsyncClient):
-    """Regular user should not be able to create admin users."""
-    # Arrange
+    """普通用户不应能够创建管理员用户。"""
+    # 准备
     payload = {
         "name": "John Doe",
         "email": "john@example.com",
         "role": "admin"
     }
-    headers = {"Authorization": "Bearer valid_user_token"}  # Not admin
+    headers = {"Authorization": "Bearer valid_user_token"}  # 非管理员
 
-    # Act
+    # 执行
     response = await async_client.post("/api/users", json=payload, headers=headers)
 
-    # Assert
+    # 断言
     assert response.status_code == 403
 ```
 
@@ -210,10 +210,10 @@ async def test_create_admin_user_as_regular_user(async_client: AsyncClient):
 ```python
 @pytest.fixture
 async def test_db():
-    """Create a test database for each test."""
+    """为每个测试创建测试数据库。"""
     async with create_test_database() as db:
         yield db
-        # Clean up after test
+        # 测试后清理
 
 @pytest.mark.asyncio
 async def test_user_creation(test_db):
@@ -226,12 +226,12 @@ async def test_user_creation(test_db):
 ```python
 @pytest.mark.asyncio
 async def test_feature_a(test_db):
-    # Test A
+    # 测试 A
     pass
 
 @pytest.mark.asyncio
 async def test_feature_b(test_db):
-    # Test B - should not depend on Test A
+    # 测试 B - 不应依赖测试 A
     pass
 ```
 
@@ -256,7 +256,7 @@ async def test_payment_success():
 ```python
 @pytest.fixture
 def authenticated_client(async_client):
-    """Return a client with authentication headers."""
+    """返回带有认证头的客户端。"""
     async with async_client as client:
         client.headers.update({"Authorization": "Bearer test_token"})
         yield client
@@ -272,52 +272,52 @@ async def test_protected_endpoint(authenticated_client):
 ### 数据库 CRUD 操作
 
 ```
-为...编写集成测试 CRUD operations on [Model].
+为 [模型] 的 CRUD 操作编写集成测试。
 
-## Model
+## 模型
 [模型定义]
 
-## Endpoints
-- POST /api/[resource] - Create
-- GET /api/[resource]/:id - Read
-- PUT /api/[resource]/:id - Update
-- DELETE /api/[resource]/:id - Delete
+## 端点
+- POST /api/[resource] - 创建
+- GET /api/[resource]/:id - 读取
+- PUT /api/[resource]/:id - 更新
+- DELETE /api/[resource]/:id - 删除
 
 ## 测试要求
-1. Create with valid data
-2. Create with invalid data (validation errors)
-3. Read existing resource
-4. Read non-existing resource (404)
-5. Update existing resource
-6. Update non-existing resource
-7. Delete existing resource
-8. Delete non-existing resource
-9. Verify database state after each operation
+1. 使用有效数据创建
+2. 使用无效数据创建（验证错误）
+3. 读取现有资源
+4. 读取不存在的资源（404）
+5. 更新现有资源
+6. 更新不存在的资源
+7. 删除现有资源
+8. 删除不存在的资源
+9. 每次操作后验证数据库状态
 
 ## 输出
-Provide complete integration tests.
+提供完整的集成测试。
 ```
 
 ### 外部 API 集成
 
 ```
-为...编写集成测试 external service integration.
+为外部服务集成编写集成测试。
 
-## External Service
+## 外部服务
 [服务名称，例如：Stripe, Twilio, SendGrid]
 
-## Integration Points
+## 集成点
 [哪些功能依赖外部服务]
 
 ## 测试要求
-1. Mock external service for unit tests
-2. Test with actual external service (optional, with test credentials)
-3. Test error handling (service down, timeout)
-4. Test rate limiting
-5. Test retry logic
+1. 为单元测试模拟外部服务
+2. 使用实际外部服务测试（可选，使用测试凭据）
+3. 测试错误处理（服务宕机、超时）
+4. 测试速率限制
+5. 测试重试逻辑
 
 ## 输出
-Provide test code with mocks and integration tests.
+提供包含模拟和集成测试的测试代码。
 ```
 
 **示例：**
@@ -328,62 +328,62 @@ from unittest.mock import patch, AsyncMock
 import pytest
 
 class TestEmailService:
-    """Test email service integration."""
+    """测试邮件服务集成。"""
 
     @patch('services.email_service.sendgrid_client.send')
     async def test_send_email_success(self, mock_send):
-        """Should successfully send email via SendGrid."""
-        # Arrange
+        """应通过 SendGrid 成功发送邮件。"""
+        # 准备
         mock_send.return_value = {"status_code": 202}
         service = EmailService()
 
-        # Act
+        # 执行
         result = await service.send_email(
             to="user@example.com",
             subject="Welcome",
             body="Hello!"
         )
 
-        # Assert
+        # 断言
         assert result["success"] is True
         mock_send.assert_called_once()
 
     @patch('services.email_service.sendgrid_client.send')
     async def test_send_email_retry_on_failure(self, mock_send):
-        """Should retry on SendGrid failure."""
-        # Arrange
+        """SendGrid 失败时应重试。"""
+        # 准备
         mock_send.side_effect = [
             Exception("Temporary failure"),
             {"status_code": 202}
         ]
         service = EmailService(max_retries=2)
 
-        # Act
+        # 执行
         result = await service.send_email(
             to="user@example.com",
             subject="Welcome",
             body="Hello!"
         )
 
-        # Assert
+        # 断言
         assert result["success"] is True
         assert mock_send.call_count == 2
 
     @patch('services.email_service.sendgrid_client.send')
     async def test_send_email_max_retries_exceeded(self, mock_send):
-        """Should return failure after max retries."""
-        # Arrange
+        """达到最大重试次数后应返回失败。"""
+        # 准备
         mock_send.side_effect = Exception("Persistent failure")
         service = EmailService(max_retries=3)
 
-        # Act
+        # 执行
         result = await service.send_email(
             to="user@example.com",
             subject="Welcome",
             body="Hello!"
         )
 
-        # Assert
+        # 断言
         assert result["success"] is False
         assert mock_send.call_count == 3
 ```
@@ -391,23 +391,23 @@ class TestEmailService:
 ### 消息队列测试
 
 ```
-为...编写集成测试 message queue handling.
+为消息队列处理编写集成测试。
 
-## Queue System
+## 队列系统
 [RabbitMQ / Redis / Kafka / AWS SQS]
 
-## Messages
+## 消息
 [消息类型和格式]
 
 ## 测试要求
-1. Test message publishing
-2. Test message consumption
-3. Test error handling (invalid messages, processing failures)
-4. Test retry / dead-letter queue behavior
-5. Test concurrent processing
+1. 测试消息发布
+2. 测试消息消费
+3. 测试错误处理（无效消息、处理失败）
+4. 测试重试 / 死信队列行为
+5. 测试并发处理
 
 ## 输出
-Provide test code with queue fixtures.
+提供包含队列 fixtures 的测试代码。
 ```
 
 **示例：**
@@ -419,8 +419,8 @@ from unittest.mock import AsyncMock
 
 @pytest.mark.asyncio
 async def test_process_user_created_message(queue, consumer, db_session):
-    """Should process user creation message correctly."""
-    # Arrange
+    """应正确处理用户创建消息。"""
+    # 准备
     message = {
         "type": "user.created",
         "data": {
@@ -431,25 +431,25 @@ async def test_process_user_created_message(queue, consumer, db_session):
     }
     await queue.publish("users", message)
 
-    # Act
+    # 执行
     await consumer.process_next_message()
 
-    # Assert
+    # 断言
     user = await User.get_by_id(db_session, 123)
     assert user is not None
     assert user.email == "test@example.com"
 
 @pytest.mark.asyncio
 async def test_invalid_message_to_dead_letter(queue, consumer):
-    """Should send invalid messages to dead-letter queue."""
-    # Arrange
+    """应将无效消息发送到死信队列。"""
+    # 准备
     invalid_message = {"type": "invalid.type"}
     await queue.publish("users", invalid_message)
 
-    # Act
+    # 执行
     await consumer.process_next_message()
 
-    # Assert - Message should be in dead-letter queue
+    # 断言 - 消息应该在死信队列中
     dlq_messages = await queue.get_messages("users.dlq")
     assert len(dlq_messages) == 1
     assert dlq_messages[0] == invalid_message
@@ -467,13 +467,13 @@ from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
 
 @pytest.fixture
 async def async_client():
-    """Create async HTTP client for testing."""
+    """创建用于测试的异步 HTTP 客户端。"""
     async with AsyncClient(app=app, base_url="http://test") as client:
         yield client
 
 @pytest.fixture
 async def db_session():
-    """Create database session for testing."""
+    """创建用于测试的数据库会话。"""
     engine = create_async_engine("sqlite+aiosqlite:///:memory:")
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.create_all)
@@ -486,7 +486,7 @@ async def db_session():
 
 @pytest.fixture
 def test_user(db_session):
-    """Create a test user."""
+    """创建测试用户。"""
     user = User(name="Test User", email="test@example.com")
     db_session.add(user)
     db_session.commit()
@@ -496,34 +496,34 @@ def test_user(db_session):
 ## 集成测试检查清单
 
 ```
-Integration Test Checklist:
+集成测试检查清单：
 
-Database:
-□ Use separate test database
-□ Clean up data after each test
-□ Verify actual DB state
-□ Test transactions (commit/rollback)
+数据库：
+□ 使用单独的测试数据库
+□ 每个测试后清理数据
+□ 验证实际的数据库状态
+□ 测试事务（提交/回滚）
 
-API:
-□ Test all status codes
-□ Test response body structure
-□ Test authentication/authorization
-□ Test rate limiting (if applicable)
+API：
+□ 测试所有状态码
+□ 测试响应体结构
+□ 测试认证/授权
+□ 测试速率限制（如适用）
 
-External Services:
-□ Mock external calls when possible
-□ Test error handling (service down)
-□ Test timeouts
-□ Test retry logic
+外部服务：
+□ 尽可能模拟外部调用
+□ 测试错误处理（服务宕机）
+□ 测试超时
+□ 测试重试逻辑
 
-Test Isolation:
-□ Tests can run independently
-□ Tests can run in any order
-□ No shared state between tests
-□ Each test has its own data
+测试隔离：
+□ 测试可以独立运行
+□ 测试可以按任意顺序运行
+□ 测试之间无共享状态
+□ 每个测试有自己的数据
 
 性能：
-□ Add performance benchmarks if needed
-□ Monitor query counts
-□ Check for N+1 queries
+□ 如需要，添加性能基准测试
+□ 监控查询数量
+□ 检查 N+1 查询
 ```
