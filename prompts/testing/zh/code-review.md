@@ -1,4 +1,4 @@
-# Code Review Prompt Template
+# 代码审查 Prompt 模板
 
 代码审查的 prompt 模板。
 
@@ -12,25 +12,25 @@
 ## Prompt 模板
 
 ```
-Review this code: [diff or file]
+审查以下代码：[diff 或文件]
 
-Focus on:
-- Bugs and potential issues
-- Security vulnerabilities
-- Performance problems
-- Code style and best practices
-- Test coverage
+重点关注：
+- Bug 和潜在问题
+- 安全漏洞
+- 性能问题
+- 代码风格和最佳实践
+- 测试覆盖率
 
 对于每个问题：
-1. Severity: Critical/High/Medium/Low
-2. Description: Clear explanation
-3. Suggested fix: Code example if possible
-4. Location: File and line number
+1. 严重程度：严重/高/中/低
+2. 描述：清晰解释
+3. 建议修复：尽可能提供代码示例
+4. 位置：文件和行号
 
-Format: Provide as a markdown report with sections for each issue.
+格式：提供 markdown 报告，每个问题分章节展示。
 
-Context:
-- [Relevant context: this is payment code, user-facing, etc.]
+上下文：
+- [相关上下文：例如这是支付代码、面向用户的代码等]
 ```
 
 ## 实际例子
@@ -38,45 +38,45 @@ Context:
 ### 例子：审查支付模块 PR
 
 ```
-Review this PR for the payment module.
+审查支付模块的这个 PR。
 
-Focus on:
-- Security: No API key leaks, proper validation, no injection risks
-- Bugs: Edge cases, error handling
-- Performance: Database queries, unnecessary loops
-- Best practices: Code organization, naming, comments
+重点关注：
+- 安全：无 API 密钥泄露、正确的验证、无注入风险
+- Bug：边界情况、错误处理
+- 性能：数据库查询、不必要的循环
+- 最佳实践：代码组织、命名、注释
 
-This code processes real payments, so security is critical.
+此代码处理真实支付，因此安全性至关重要。
 
 对于每个问题：
-1. Severity: Critical/High/Medium/Low
-2. Description: Clear explanation
-3. Suggested fix: Code example
-4. Location: File and line number
+1. 严重程度：严重/高/中/低
+2. 描述：清晰解释
+3. 建议修复：代码示例
+4. 位置：文件和行号
 
-Here's the diff: [paste diff]
+以下是 diff：[粘贴 diff]
 ```
 
 ### 例子：全面代码审查
 
 ```
-Review the auth module (auth_service.py, auth_middleware.py).
+审查认证模块（auth_service.py, auth_middleware.py）。
 
-Check for:
-- Common security issues (XSS, CSRF, SQL injection, auth bypass)
-- Error handling and edge cases
-- Performance bottlenecks
-- Code duplication
-- Missing tests
-- Deprecated APIs or patterns
+检查：
+- 常见安全问题（XSS、CSRF、SQL 注入、认证绕过）
+- 错误处理和边界情况
+- 性能瓶颈
+- 代码重复
+- 缺少测试
+- 已弃用的 API 或模式
 
-Context: This module handles user authentication and session management.
+上下文：此模块处理用户认证和会话管理。
 
-Provide:
-1. Summary of findings
-2. Critical issues (must fix before merge)
-3. Suggestions for improvement
-4. Positive aspects (what's done well)
+提供：
+1. 发现总结
+2. 关键问题（合并前必须修复）
+3. 改进建议
+4. 优点（做得好的地方）
 ```
 
 ## 审查维度
@@ -113,20 +113,20 @@ Provide:
 ## 输出格式
 
 ```markdown
-# Code Review Report
+# 代码审查报告
 
 ## 关键问题（必须修复）
-### Issue #1: SQL Injection Risk
-- **Severity**: Critical
-- **Location**: `auth.py:45`
-- **Description**: User input is directly concatenated into SQL query...
-- **Fix**: Use parameterized queries:
+### 问题 #1：SQL 注入风险
+- **严重程度**：严重
+- **位置**：`auth.py:45`
+- **描述**：用户输入直接拼接到 SQL 查询中...
+- **修复**：使用参数化查询：
   ```python
   cursor.execute("SELECT * FROM users WHERE id = %s", (user_id,))
   ```
 
 ## 高优先级问题
-### Issue #1: Missing Error Handling
+### 问题 #1：缺少错误处理
 ...
 
 ## 中等优先级问题
@@ -136,7 +136,7 @@ Provide:
 ...
 
 ## 做得好的地方 🌟
-- Good use of type hints
-- Comprehensive test coverage
+- 类型提示使用得当
+- 测试覆盖全面
 ...
 ```
