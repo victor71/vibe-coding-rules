@@ -52,41 +52,41 @@
 ### 例子：API 性能测试
 
 ```
-Write performance test scripts for the products API.
+为产品 API 编写性能测试脚本。
 
-## API Definition
-- **Method:** GET
-- **Path:** /api/products
-- **Headers:** Authorization: Bearer [token]
+## API 定义
+- **方法：** GET
+- **路径：** /api/products
+- **请求头：** Authorization: Bearer [token]
 
-## Request Parameters
-- `page`: Page number (default: 1)
-- `limit`: Items per page (default: 20)
-- `category`: Filter by category (optional)
+## 请求参数
+- `page`: 页码（默认：1）
+- `limit`: 每页项目数（默认：20）
+- `category`: 按类别筛选（可选）
 
-## Performance Targets
-- **Response Time (p95):** < 200ms
-- **Response Time (p99):** < 500ms
-- **Throughput:** > 1000 req/s
-- **Error Rate:** < 0.1%
+## 性能目标
+- **响应时间 (p95):** < 200ms
+- **响应时间 (p99):** < 500ms
+- **吞吐量：** > 1000 req/s
+- **错误率：** < 0.1%
 
-## Test Scenarios
-1. **Baseline test** - 10 concurrent users for 1 minute
-2. **Normal load** - 100 concurrent users for 2 minutes
-3. **Stress test** - 1000 concurrent users for 5 minutes
-4. **Sustained test** - 500 concurrent users for 30 minutes
+## 测试场景
+1. **基准测试** - 10 并发用户持续 1 分钟
+2. **正常负载** - 100 并发用户持续 2 分钟
+3. **压力测试** - 1000 并发用户持续 5 分钟
+4. **持久测试** - 500 并发用户持续 30 分钟
 
-## Test Tool
+## 测试工具
 k6
 
 ## 要求
-1. Provide complete test script
-2. Include custom metrics (response time, error rate, throughput)
-3. Generate HTML performance report
-4. Compare against targets in summary
+1. 提供完整的测试脚本
+2. 包含自定义指标（响应时间、错误率、吞吐量）
+3. 生成 HTML 性能报告
+4. 在汇总中与目标值进行比较
 
 ## 输出
-Provide test script and usage instructions.
+提供测试脚本和使用说明。
 ```
 
 **示例输出（k6）：**
@@ -325,19 +325,19 @@ Provide complete load test script.
 **目标：** 找出系统崩溃点
 
 ```
-Write a stress test to find the breaking point of [API].
+为 [API] 编写压力测试以找出崩溃点。
 
-## Test Plan
-Gradually increase load until:
-- Response time degrades significantly
-- Error rate spikes
-- System crashes or becomes unresponsive
+## 测试计划
+逐渐增加负载直到：
+- 响应时间显著下降
+- 错误率飙升
+- 系统崩溃或无响应
 
-## Ramp Up Strategy
-Start at [X users], increase by [Y users] every [Z seconds]
+## 增量策略
+从 [X 用户] 开始，每 [Z 秒] 增加 [Y 用户]
 
 ## 输出
-Provide stress test script and monitoring plan.
+提供压力测试脚本和监控计划。
 ```
 
 ### 3. Spike 测试
@@ -345,13 +345,13 @@ Provide stress test script and monitoring plan.
 **目标：** 测试系统应对突发流量的能力
 
 ```
-Write a spike test for [API].
+为 [API] 编写突发测试。
 
-## Spike Profile
-- Baseline: [X users]
-- Spike: [Y users] (sudden increase)
-- Duration: [Z seconds]
-- Recovery: Back to [X users]
+## 突发配置
+- 基准：[X 用户]
+- 突发：[Y 用户]（突然增加）
+- 持续时间：[Z 秒]
+- 恢复：回到 [X 用户]
 
 ## Expected Behavior
 - System should handle spike gracefully
@@ -389,39 +389,39 @@ Provide soak test script and monitoring setup.
 ### Prompt: 性能分析
 
 ```
-Analyze the following performance test results:
+分析以下性能测试结果：
 
-## Test Results
+## 测试结果
 [粘贴测试结果数据]
 
-## System Info
-- CPU: [specifications]
-- RAM: [amount]
-- Network: [bandwidth]
-- Database: [type, version]
+## 系统信息
+- CPU: [规格]
+- RAM: [容量]
+- 网络：[带宽]
+- 数据库：[类型, 版本]
 
 ## 要求
-1. Identify bottlenecks
-2. Compare against targets
-3. Suggest optimization strategies
-4. Prioritize improvements
+1. 识别瓶颈
+2. 与目标值进行比较
+3. 建议优化策略
+4. 确定改进优先级
 
 ## 输出格式
-### Performance Analysis
+### 性能分析
 
-#### Overall Results
-- Average response time: X ms (Target: Y ms) - ✅/❌
-- P95 response time: X ms (Target: Y ms) - ✅/❌
-- Throughput: X req/s (Target: Y req/s) - ✅/❌
-- Error rate: X% (Target: Y%) - ✅/❌
+#### 总体结果
+- 平均响应时间：X ms（目标：Y ms）- ✅/❌
+- P95 响应时间：X ms（目标：Y ms）- ✅/❌
+- 吞吐量：X req/s（目标：Y req/s）- ✅/❌
+- 错误率：X%（目标：Y%）- ✅/❌
 
-#### Bottlenecks
-1. [Bottleneck 1]
-   - Evidence: [data]
-   - Impact: [severity]
-   - Suggested fix: [solution]
+#### 瓶颈
+1. [瓶颈 1]
+   - 证据：[数据]
+   - 影响：[严重程度]
+   - 建议修复：[解决方案]
 
-#### Optimization Recommendations
+#### 优化建议
 1. [Recommendation 1]
    - Expected improvement: [estimate]
    - Effort: [low/medium/high]
@@ -463,35 +463,35 @@ Provide optimized code and performance comparison.
 ### 1. N+1 查询问题
 
 ```
-Optimize this code to eliminate N+1 queries:
+优化此代码以消除 N+1 查询：
 
 [粘贴代码]
 
-The code is making a database query for each item in a loop.
+此代码在循环中对每个项目进行数据库查询。
 
 ## 要求
-1. Use joins or subqueries to fetch all data in fewer queries
-2. Add benchmarks before and after
-3. Ensure the result is the same
-4. Update related tests if needed
+1. 使用连接或子查询以更少的查询获取所有数据
+2. 添加优化前后的基准测试
+3. 确保结果相同
+4. 如需要，更新相关测试
 ```
 
 ### 2. 缺少索引
 
 ```
-Analyze and optimize this slow query:
+分析并优化这个慢查询：
 
 [SQL 查询]
 
-## Current Performance
-- Execution time: X ms
-- Rows returned: Y
+## 当前性能
+- 执行时间：X ms
+- 返回行数：Y
 
 ## 要求
-1. Use EXPLAIN ANALYZE to identify bottlenecks
-2. Suggest appropriate indexes
-3. Provide optimized query
-4. Show performance improvement
+1. 使用 EXPLAIN ANALYZE 识别瓶颈
+2. 建议合适的索引
+3. 提供优化的查询
+4. 展示性能改进
 ```
 
 ### 3. 内存泄漏
@@ -513,34 +513,34 @@ Debug memory leak in [component].
 ## 性能测试检查清单
 
 ```
-Performance Test Checklist:
+性能测试检查清单：
 
-Test Design:
-□ Test objectives clearly defined
-□ Realistic workload simulated
-□ Performance targets defined
-□ Test environment matches production (as much as possible)
-□ Test data is representative
+测试设计：
+□ 测试目标明确定义
+□ 模拟真实工作负载
+□ 定义性能目标
+□ 测试环境匹配生产环境（尽可能）
+□ 测试数据具有代表性
 
-Test Execution:
-□ Warm-up period included
-□ Tests run long enough to reach steady state
-□ Multiple runs for statistical significance
-□ System monitoring in place
-□ Results captured and stored
+测试执行：
+□ 包含预热期
+□ 测试运行足够长时间以达到稳定状态
+□ 多次运行以获得统计显著性
+□ 系统监控就位
+□ 结果已捕获和存储
 
-Analysis:
-□ Compare against baseline
-□ Identify bottlenecks
-□ Document findings
-□ Prioritize improvements
-□ Share results with team
+分析：
+□ 与基准进行比较
+□ 识别瓶颈
+□ 记录发现
+确定改进优先级
+□ 与团队分享结果
 
-Optimization:
-□ Top bottlenecks addressed first
-□ Before/after benchmarks
-□ Regression testing
-□ Production deployment plan
+优化：
+□ 首先解决主要瓶颈
+□ 优化前后基准测试
+□ 回归测试
+□ 生产部署计划
 ```
 
 ## 工具对比
