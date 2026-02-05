@@ -1,4 +1,4 @@
-# Performance Test Prompt Template
+# 性能测试 Prompt 模板
 
 性能测试的 prompt 模板。
 
@@ -97,61 +97,61 @@ import http from 'k6/http';
 import { check, sleep } from 'k6';
 import { Rate, Trend, Counter } from 'k6/metrics';
 
-// Custom metrics
+// 自定义指标
 const errorRate = new Rate('errors');
 const responseTime = new Trend('response_time');
 const requestCount = new Counter('requests');
 
-// Test configuration
+// 测试配置
 export const options = {
   stages: [
-    // Stage 1: Ramp up to baseline
+    // 阶段 1：增加到基准
     { duration: '30s', target: 10 },
 
-    // Stage 2: Stay at baseline
+    // 阶段 2：保持基准
     { duration: '1m', target: 10 },
 
-    // Stage 3: Ramp up to normal load
+    // 阶段 3：增加到正常负载
     { duration: '1m', target: 100 },
 
-    // Stage 4: Stay at normal load
+    // 阶段 4：保持正常负载
     { duration: '2m', target: 100 },
 
-    // Stage 5: Ramp up to stress
+    // 阶段 5：增加到压力
     { duration: '2m', target: 1000 },
 
-    // Stage 6: Stay at stress
+    // 阶段 6：保持压力
     { duration: '5m', target: 1000 },
 
-    // Stage 7: Spike test
+    // 阶段 7：突发测试
     { duration: '1m', target: 2000 },
 
-    // Stage 8: Ramp down
+    // 阶段 8：减少
     { duration: '2m', target: 0 },
   ],
 
-  // Thresholds - fail test if these aren't met
+  // 阈值 - 如果不满足这些条件则测试失败
   thresholds: {
-    http_req_duration: ['p(95)<200', 'p(99)<500'], // Response time
-    errors: ['rate<0.01'],                           // Error rate < 1%
-    http_req_failed: ['rate<0.01'],                  // Failed requests < 1%
+    http_req_duration: ['p(95)<200', 'p(99)<500'], // 响应时间
+    errors: ['rate<0.01'],                           // 错误率 < 1%
+    http_req_failed: ['rate<0.01'],                  // 失败请求 < 1%
   },
 };
 
-// Default headers
+// 默认请求头
 const headers = {
   'Authorization': 'Bearer valid_test_token',
   'Content-Type': 'application/json',
 };
 
 export default function () {
-  // Make API request with pagination
-  const page = Math.floor(Math.random() * 50) + 1; // Random page 1-50
+  // 发起带分页的 API 请求
+  const page = Math.floor(Math.random() * 50) + 1; // 随机页码 1-50
   const url = `https://api.example.com/products?page=${page}&limit=20`;
 
   const response = http.get(url, { headers });
 
-  // Record metrics
+  // 记录指标
   const isSuccess = check(response, {
     'status is 200': (r) => r.status === 200,
     'response time < 500ms': (r) => r.timings.duration < 500,
@@ -165,16 +165,16 @@ export default function () {
     },
   });
 
-  // Update custom metrics
+  // 更新自定义指标
   errorRate.add(!isSuccess);
   responseTime.add(response.timings.duration);
   requestCount.add(1);
 
-  // Sleep between requests (simulate real user behavior)
-  sleep(Math.random() * 2 + 1); // 1-3 seconds
+  // 请求之间休眠（模拟真实用户行为）
+  sleep(Math.random() * 2 + 1); // 1-3 秒
 }
 
-// Handle summary - generate report
+// 处理汇总 - 生成报告
 export function handleSummary(data) {
   return {
     'performance-report.json': JSON.stringify(data),
@@ -219,20 +219,20 @@ from locust import HttpUser, task, between
 import random
 
 class ProductAPIUser(HttpUser):
-    wait_time = between(1, 3)  # Wait 1-3 seconds between requests
+    wait_time = between(1, 3)  # 请求之间等待 1-3 秒
 
     def on_start(self):
-        """Called when a user starts."""
-        # Login to get token
+        """用户启动时调用。"""
+        # 登录以获取 token
         response = self.client.post("/api/auth/login", json={
             "email": "test@example.com",
             "password": "password123"
         })
         self.token = response.json()["token"]
 
-    @task(3)  # This task runs 3x more than others
+    @task(3)  # 此任务比其他任务多运行 3 倍
     def get_products(self):
-        """Get products list."""
+        """获取产品列表。"""
         page = random.randint(1, 50)
         self.client.get(
             f"/api/products?page={page}&limit=20",
@@ -241,7 +241,7 @@ class ProductAPIUser(HttpUser):
 
     @task(1)
     def get_product_details(self):
-        """Get single product details."""
+        """获取单个产品详情。"""
         product_id = random.randint(1, 1000)
         self.client.get(
             f"/api/products/{product_id}",
@@ -250,7 +250,7 @@ class ProductAPIUser(HttpUser):
 
     @task(1)
     def search_products(self):
-        """Search products."""
+        """搜索产品。"""
         query = random.choice(["laptop", "phone", "monitor", "keyboard"])
         self.client.get(
             f"/api/products/search?q={query}",
@@ -304,20 +304,20 @@ Listeners
 **目标：** 验证系统在预期负载下的性能
 
 ```
-Write a load test for [API].
+为 [API] 编写负载测试。
 
-## Load Profile
-- Concurrent users: [number]
-- Test duration: [time]
-- Request rate: [requests per second]
+## 负载配置
+- 并发用户数：[数字]
+- 测试持续时间：[时间]
+- 请求速率：[每秒请求数]
 
-## Expected Performance
-- Average response time: < X ms
-- 95th percentile: < Y ms
-- Error rate: < Z%
+## 预期性能
+- 平均响应时间：< X ms
+- 95 百分位：< Y ms
+- 错误率：< Z%
 
 ## 输出
-Provide complete load test script.
+提供完整的负载测试脚本。
 ```
 
 ### 2. 压力测试（Stress Testing）
@@ -353,13 +353,13 @@ Provide complete load test script.
 - 持续时间：[Z 秒]
 - 恢复：回到 [X 用户]
 
-## Expected Behavior
-- System should handle spike gracefully
-- No data loss
-- Quick recovery after spike
+## 预期行为
+- 系统应能优雅地处理突发流量
+- 无数据丢失
+- 突发后快速恢复
 
 ## 输出
-Provide spike test script.
+提供突发测试脚本。
 ```
 
 ### 4. 持久测试（Soak Testing）
@@ -367,21 +367,21 @@ Provide spike test script.
 **目标：** 测试系统长时间运行的稳定性
 
 ```
-Write a soak test for [API].
+为 [API] 编写持久测试。
 
-## Test Configuration
-- Duration: [e.g., 8 hours, 24 hours]
-- Load: [X users] (normal production load)
-- Monitoring: Check for memory leaks, performance degradation
+## 测试配置
+- 持续时间：[例如：8 小时、24 小时]
+- 负载：[X 用户]（正常生产负载）
+- 监控：检查内存泄漏、性能下降
 
-## Key Metrics to Track
-- Memory usage over time
-- Response time trend
-- Error rate over time
-- CPU usage
+## 需要跟踪的关键指标
+- 随时间变化的内存使用
+- 响应时间趋势
+- 随时间变化的错误率
+- CPU 使用率
 
 ## 输出
-Provide soak test script and monitoring setup.
+提供持久测试脚本和监控设置。
 ```
 
 ## 性能分析和优化
@@ -422,40 +422,40 @@ Provide soak test script and monitoring setup.
    - 建议修复：[解决方案]
 
 #### 优化建议
-1. [Recommendation 1]
-   - Expected improvement: [estimate]
-   - Effort: [low/medium/high]
-   - Priority: [1-5]
+1. [建议 1]
+   - 预期改进：[估算]
+   - 工作量：[低/中/高]
+   - 优先级：[1-5]
 ```
 
 ## 性能优化 Prompt
 
 ```
-Optimize [component/code] for performance.
+优化 [组件/代码] 的性能。
 
-## Current Performance
-- Benchmark results: [data]
-- Bottlenecks identified: [list]
+## 当前性能
+- 基准测试结果：[数据]
+- 识别的瓶颈：[列表]
 
-## Target Performance
-- Response time: < X ms
-- Throughput: > Y req/s
-- Memory usage: < Z MB
+## 目标性能
+- 响应时间：< X ms
+- 吞吐量：> Y req/s
+- 内存使用：< Z MB
 
-## Constraints
-- Cannot change [X]
-- Must maintain [Y]
-- Limited to [Z] resources
+## 约束
+- 不能更改 [X]
+- 必须保持 [Y]
+- 限于 [Z] 资源
 
 ## 要求
-1. Analyze the current implementation
-2. Identify optimization opportunities
-3. Implement improvements
-4. Add benchmarks to verify
-5. Maintain correctness with tests
+1. 分析当前实现
+2. 识别优化机会
+3. 实施改进
+4. 添加基准测试以验证
+5. 通过测试保持正确性
 
 ## 输出
-Provide optimized code and performance comparison.
+提供优化的代码和性能比较。
 ```
 
 ## 常见性能问题
@@ -497,17 +497,17 @@ Provide optimized code and performance comparison.
 ### 3. 内存泄漏
 
 ```
-Debug memory leak in [component].
+调试 [组件] 中的内存泄漏。
 
-## Symptoms
-- Memory usage grows over time
-- Eventually crashes with OOM
+## 症状
+- 内存使用随时间增长
+- 最终因 OOM 崩溃
 
 ## 要求
-1. Identify the source of memory leak
-2. Fix the leak
-3. Add memory monitoring
-4. Verify with a soak test
+1. 识别内存泄漏的来源
+2. 修复泄漏
+3. 添加内存监控
+4. 使用持久测试验证
 ```
 
 ## 性能测试检查清单
